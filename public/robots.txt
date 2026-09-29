@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://samarthai.vercel.app/sitemap.xml
+
