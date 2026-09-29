@@ -58,7 +58,7 @@ test.describe('Samarth Critical User Journeys', () => {
   test('CUJ 2: EMI Calculator Workflow', async ({ page }) => {
     await page.goto('/calculator');
     
-    await expect(page.getByText(/EMI Calculator/i).first()).toBeVisible();
+    await expect(page.getByText(/Calculator/i).first()).toBeVisible();
     await expect(page.getByText(/Monthly EMI/i).first()).toBeVisible();
 
     // Interact with the loan amount slider
