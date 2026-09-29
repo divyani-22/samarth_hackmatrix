@@ -42,12 +42,8 @@ import {
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import ApplicationDossier from "./components/ApplicationDossier";
 import { SpeakButton, VoiceInputButton } from "./components/VoiceAssistant";
-import AIBusinessAnalyzer from "./components/AIBusinessAnalyzer";
-import AdminDashboard from "./components/AdminDashboard";
 import CertificateScanner from "./components/CertificateScanner";
 import EvaluationTestBench from "./components/EvaluationTestBench";
-import PolicyStackOptimizer from "./components/PolicyStackOptimizer";
-import PathToEligibilitySimulator from "./components/PathToEligibilitySimulator";
 import {
   MapContainer,
   TileLayer,
@@ -1041,11 +1037,11 @@ const FindScheme = ({ lang }) => {
   return (
     <div className="w-full max-w-7xl mx-auto py-8 px-4 h-full flex flex-col items-center">
       {/* Discovery Mode Selector Tabs */}
-      <div className="w-full max-w-2xl mb-8 bg-surface-container p-1.5 rounded-2xl flex border border-surface-container-high shadow-sm">
+      <div className="w-full max-w-xl mb-8 bg-surface-container p-1.5 rounded-2xl flex border border-surface-container-high shadow-sm">
         <button
           type="button"
           onClick={() => setDiscoveryMode("form")}
-          className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+          className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
             discoveryMode === "form"
               ? "bg-surface text-primary shadow-sm"
               : "text-on-surface-variant hover:text-on-surface"
@@ -1057,28 +1053,15 @@ const FindScheme = ({ lang }) => {
 
         <button
           type="button"
-          onClick={() => setDiscoveryMode("ai-idea")}
-          className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
-            discoveryMode === "ai-idea"
-              ? "bg-surface text-secondary shadow-sm"
-              : "text-on-surface-variant hover:text-on-surface"
-          }`}
-        >
-          <BrainCircuit size={16} className="text-secondary" />
-          <span>{t.tabAiIdea}</span>
-        </button>
-
-        <button
-          type="button"
           onClick={() => setDiscoveryMode("scan")}
-          className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+          className={`flex-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
             discoveryMode === "scan"
-              ? "bg-surface text-emerald-700 shadow-sm"
-              : "text-on-surface-variant hover:text-on-surface"
+              ? "bg-emerald-700 text-white shadow-sm"
+              : "text-on-surface-variant hover:text-emerald-700"
           }`}
         >
-          <ShieldCheck size={16} className="text-emerald-600" />
-          <span>{t.tabScanCert}</span>
+          <ShieldCheck size={16} className={discoveryMode === "scan" ? "text-emerald-200" : "text-emerald-600"} />
+          <span>Upload / Scan Document</span>
         </button>
       </div>
 
@@ -1098,15 +1081,6 @@ const FindScheme = ({ lang }) => {
       )}
 
       {(() => {
-        if (discoveryMode === "ai-idea") return (
-        <div className="w-full max-w-4xl">
-          <AIBusinessAnalyzer
-            lang={lang}
-            onSelectScheme={(s) => navigate("/scheme/" + s.id)}
-          />
-        </div>
-        );
-
         if (discoveryMode === "scan") return (
         <div className="w-full max-w-4xl">
           <CertificateScanner
@@ -2622,62 +2596,65 @@ const getSchemeAssistantResponse = (query, lang) => {
 
   // Hindi responses
   if (lang === "hi") {
+    if (q.includes("tax") || q.includes("कर") || q.includes("टैक्स") || q.includes("80jjaa") || q.includes("44ad") || q.includes("deduction")) {
+      return "छोटे व्यवसायों और एमएसएमई के लिए मुख्य कर छूट योजनाएं:\n1. धारा 44AD अनुमानित कराधान: ₹3 करोड़ तक के टर्नओवर पर बिना ऑडिट के 6% (डिजिटल) या 8% लाभ घोषित करने की छूट।\n2. धारा 80JJAA: नए कर्मचारियों के वेतन पर 3 साल तक 30% अतिरिक्त टैक्स छूट।";
+    }
     if (q.includes("दस्तावेज़") || q.includes("कागजात") || q.includes("document") || q.includes("doc")) {
-      return "आवेदन के लिए आवश्यक मुख्य दस्तावेज़ हैं: 1. आधार कार्ड, 2. सक्षम अधिकारी (तहसीलदार/एसडीएम) द्वारा जारी वैध जाति प्रमाण पत्र (SC/OBC), 3. आय प्रमाण पत्र (पारिवारिक आय ₹3 लाख से कम), 4. व्यवसाय कोटेशन या परियोजना रिपोर्ट, और 5. बैंक पासबुक या चेक। आप 'Find Scheme' टैब में प्रमाणपत्र स्कैन भी कर सकते हैं।";
+      return "आवेदन के लिए आवश्यक मुख्य दस्तावेज़:\n1. आधार कार्ड और पैन कार्ड,\n2. आय प्रमाण पत्र / ITR-4 / फॉर्म 16,\n3. एमएसएमई उद्यम पंजीकरण (व्यापारियों के लिए),\n4. जाति प्रमाण पत्र (संबद्ध योजनाओं हेतु), और\n5. बैंक स्टेटमेंट। आप 'Upload / Scan Document' टैब पर प्रमाणपत्र अपलोड करके तत्काल डेटा निकाल सकते हैं।";
     }
-    if (q.includes("महिला") || q.includes("aurat") || q.includes("women") || q.includes("ladki") || q.includes("msy")) {
-      return "महिला उद्यमियों के लिए सबसे लोकप्रिय योजना 'महिला समृद्धि योजना (MSY)' है। इसमें ₹1.40 लाख तक का ऋण केवल 4% वार्षिक ब्याज (समय पर भुगतान पर 3.5%) पर मिलता है, जिसमें 6 महीने का मोरेटोरियम (रियायती अवधि) शामिल है। इसके अलावा स्टैंड-अप इंडिया में ₹10 लाख से ₹1 करोड़ तक का प्रावधान है।";
+    if (q.includes("msme") || q.includes("व्यापार") || q.includes("दुकान") || q.includes("business") || q.includes("cgtmse") || q.includes("pmegp")) {
+      return "सूक्ष्म एवं लघु उद्यमों के लिए प्रमुख योजनाएं:\n1. PMEGP: 15% से 35% गैर-वापसी योग्य पूंजीगत सब्सिडी।\n2. CGTMSE: ₹5 करोड़ तक का बिना किसी जमानत (Collateral-Free) का बैंक ऋण गारंटी कवर।\n3. PM SVANidhi: रेहड़ी-पटरी विक्रेताओं के लिए ₹50,000 तक का कार्यशील पूंजी ऋण एवं 7% ब्याज सब्सिडी।";
     }
-    if (q.includes("कारीगर") || q.includes("शिल्प") || q.includes("artisan") || q.includes("craft") || q.includes("ssy")) {
-      return "पारंपरिक कारीगरों और दस्तकारों के लिए 'शिल्पी समृद्धि योजना (SSY)' उपलब्ध है, जिसमें ₹1.40 लाख तक का ऋण 5% वार्षिक रियायती ब्याज दर पर मिलता है। उपकरण व कच्चा माल खरीदने के लिए यह अत्यंत लाभकारी है।";
+    if (q.includes("borderline") || q.includes("गारंटी") || q.includes("पक्का") || q.includes("स्वीकृत") || q.includes("approve") || q.includes("manual")) {
+      return "⚠️ ध्यान दें: वित्तीय नीतियों की पात्रता वैधानिक नियमों पर आधारित होती है। यदि आपकी पारिवारिक आय सीमा के 10% के भीतर है या स्व-प्रमाणित दस्तावेज हैं, तो सिस्टम इसे 'मैनुअल समीक्षा आवश्यक (Borderline Review)' के रूप में चिह्नित करता है। नोडल अधिकारी भौतिक सत्यापन के बाद ही अंतिम स्वीकृति देते हैं।";
     }
-    if (q.includes("शिक्षा") || q.includes("पढ़ाई") || q.includes("education") || q.includes("padhai") || q.includes("study")) {
-      return "उच्च शिक्षा के लिए 'एजुकेशन लोन स्कीम' के तहत भारत में अध्ययन हेतु ₹20 लाख तक और विदेश में अध्ययन हेतु ₹30 लाख तक 4% ब्याज (महिलाओं के लिए 3.5%) पर मिलता है। पाठ्यक्रम समाप्ति के 6 महीने बाद तक कोई किस्त नहीं देनी होती।";
+    if (q.includes("महिला") || q.includes("aurat") || q.includes("women") || q.includes("msy")) {
+      return "महिला उद्यमियों के लिए 'महिला समृद्धि योजना (MSY)' में ₹1.40 लाख तक का ऋण केवल 4% वार्षिक ब्याज पर मिलता है। इसके अतिरिक्त स्टैंड-अप इंडिया में ₹10 लाख से ₹1 करोड़ तक का संपार्श्विक-मुक्त ऋण उपलब्ध है।";
     }
-    if (q.includes("पात्रता") || q.includes("योग्य") || q.includes("eligible") || q.includes("eligibility") || q.includes("income") || q.includes("आय")) {
-      return "मुख्य पात्रता शर्तें: आवेदक की आयु 18 से 65 वर्ष होनी चाहिए, परिवार की वार्षिक आय ₹3.00 लाख (कुछ योजनाओं में ₹5 लाख) से कम हो, और वैध जाति प्रमाण पत्र उपलब्ध हो। आप हमारी '7-Step Questionnaire' या 'Scan Certificate' से 1 मिनट में अपनी पात्रता जांच सकते हैं।";
+    if (q.includes("कारीगर") || q.includes("artisan") || q.includes("vishwakarma") || q.includes("ssy")) {
+      return "पारंपरिक कारीगरों के लिए 'PM विश्वकर्मा' एवं 'शिल्पी समृद्धि योजना (SSY)' के तहत ₹15,000 टूलकिट प्रोत्साहन एवं 5% रियायती ब्याज दर पर ऋण उपलब्ध है।";
     }
-    if (q.includes("ब्याज") || q.includes("emi") || q.includes("दर") || q.includes("interest") || q.includes("rate")) {
-      return "Samarth पर उपलब्ध सरकारी योजनाओं में ब्याज दरें 4% से 6% प्रति वर्ष के बीच हैं, जो कि सामान्य बैंक दरों (11-14%) की तुलना में बहुत कम हैं। साथ ही 6 से 12 महीने का मोरेटोरियम (Grace Period) भी मिलता है।";
+    if (q.includes("पात्रता") || q.includes("eligible") || q.includes("eligibility") || q.includes("income")) {
+      return "पात्रता 5 मुख्य कारकों पर निर्भर करती है: आयु (18-65 वर्ष), वार्षिक पारिवारिक आय / टर्नओवर, सामाजिक श्रेणी, व्यवसाय प्रकार (व्यक्तिगत/MSME), और वैध दस्तावेज़। 'Find Schemes' पर जाकर या 'Evaluation Bench' पर अपनी पात्रता जांचें।";
     }
-    if (q.includes("बैंक") || q.includes("bank") || q.includes("पुणे") || q.includes("pune") || q.includes("branch")) {
-      return "आप बैंक ऑफ महाराष्ट्र (शिवाजीनगर, एफसी रोड), भारतीय स्टेट बैंक (कैंप शाखा), या बैंक ऑफ बड़ौदा में आवेदन कर सकते हैं। 'Locate Partner' पेज पर जाकर अपने नजदीकी बैंक शाखा की दिशा और संपर्क विवरण प्राप्त करें।";
+    if (q.includes("ब्याज") || q.includes("emi") || q.includes("rate") || q.includes("calculator")) {
+      return "सरकारी योजनाओं में ब्याज दरें 4% से 8% प्रति वर्ष के बीच होती हैं। साथ ही 6 से 12 महीने का मोरेटोरियम (Grace Period) और 15%-35% तक की पूंजीगत सब्सिडी मिलती है।";
     }
     if (q.includes("नमस्ते") || q.includes("hello") || q.includes("hi") || q.includes("help") || q.includes("मदद")) {
-      return "नमस्ते! मैं Samarth AI सहायक हूँ। मैं आपको सरकारी ऋण योजनाओं, सब्सिडी, ब्याज दरों, पात्रता जांच, आवश्यक दस्तावेज़ और आवेदन प्रक्रिया में मदद कर सकता हूँ। आप क्या जानना चाहते हैं?";
+      return "नमस्ते! मैं Samarth AI नीति सहायक हूँ। मैं आपको सरकारी ऋण योजनाओं, पूंजी सब्सिडी, कर कटौती (Tax Deductions जैसे 44AD / 80JJAA), पात्रता नियमों और आवश्यक दस्तावेजों में सहायता कर सकता हूँ।";
     }
-    return "Samarth सरकारी ऋण योजनाओं (MSY, SSY, MCF, टर्म लोन और एजुकेशन लोन) में 4% से 6% रियायती ब्याज पर ऋण प्रदान करने में सहायता करता है। आप 'Find Scheme' टैब से तुरंत अपनी पात्रता जांच सकते हैं और आधिकारिक बैंक डोजियर डाउनलोड कर सकते हैं।";
+    return "Samarth वित्तीय नीतियों, सब्सिडी और कर छूटों की खोज में सहायता करता है। आप 'Find Schemes' टैब से तुरंत अपनी पात्रता जांच सकते हैं और आधिकारिक बैंक डोजियर डाउनलोड कर सकते हैं।";
   }
 
   // English & Default responses
-  if (q.includes("document") || q.includes("doc") || q.includes("paper") || q.includes("certificate") || q.includes("proof")) {
-    return "Mandatory documents required: 1. Aadhaar Card (Identity & Address proof), 2. Valid SC/OBC/Category Caste Certificate issued by revenue authority (Tahsildar/SDO), 3. Family Income Certificate (below ₹3 Lakhs), 4. Business Quotation / Project Cost Sheet from vendor, and 5. Bank Passbook / cancelled cheque. You can also upload your certificate on the 'Scan Certificate' tab for automatic extraction.";
+  if (q.includes("tax") || q.includes("deduction") || q.includes("80jjaa") || q.includes("44ad") || q.includes("exemption") || q.includes("itr")) {
+    return "Key Tax Deductions & Relief Schemes for Small Businesses:\n1. Section 44AD Presumptive Taxation: Exempts small enterprises with turnover up to ₹3 Crore from maintaining audited books; declare deemed profit at just 6% (digital) or 8%.\n2. Section 80JJAA Employment Deduction: 30% additional tax deduction on new employee emoluments for 3 consecutive assessment years.\n3. Section 44ADA: 50% presumptive profit taxation for eligible professionals.";
   }
-  if (q.includes("women") || q.includes("female") || q.includes("girl") || q.includes("msy") || q.includes("mahila")) {
-    return "For female entrepreneurs, the flagship scheme is 'Mahila Samriddhi Yojana (MSY)'. It offers loans up to ₹1,40,000 at a highly concessional interest rate of 4% p.a. (3.5% with rebate), with a 6-month moratorium period. Additionally, Stand-Up India provides collateral-free loans from ₹10 Lakhs to ₹1 Crore for women-led greenfield enterprises.";
+  if (q.includes("msme") || q.includes("business") || q.includes("cgtmse") || q.includes("pmegp") || q.includes("subsidy") || q.includes("enterprise") || q.includes("shop")) {
+    return "Flagship Schemes for Small Businesses & MSMEs:\n1. PMEGP Capital Subsidy: 15% to 35% non-repayable government subsidy for new manufacturing (up to ₹50L) and service (up to ₹20L) projects.\n2. CGTMSE Guarantee: Collateral-free credit facility up to ₹5 Crore with 75%–85% sovereign guarantee cover.\n3. PM SVANidhi: Micro-credit up to ₹50,000 for vendors with 7% annual interest subsidy and monthly digital cashbacks.";
   }
-  if (q.includes("artisan") || q.includes("craft") || q.includes("shilpi") || q.includes("ssy") || q.includes("weaver") || q.includes("potter")) {
-    return "For traditional artisans and craftsmen, 'Shilpi Samriddhi Yojana (SSY)' provides financial assistance up to ₹1,40,000 at 5% p.a. interest rate for purchasing modern toolkits, working capital, and raw materials. It can also be stacked with PM Vishwakarma toolkit incentives.";
+  if (q.includes("borderline") || q.includes("guarantee") || q.includes("sure") || q.includes("approve") || q.includes("manual") || q.includes("review")) {
+    return "⚠️ Statutory Triage Notice: This assistant does not give false-confident yes/no decisions. When your income or turnover is within 10% of statutory ceilings, or when documentation relies on unverified self-declaration, your application is classified as 'Borderline / Manual Review Required' for human nodal officer verification.";
   }
-  if (q.includes("education") || q.includes("study") || q.includes("student") || q.includes("college") || q.includes("course") || q.includes("abroad")) {
-    return "Under the NSFDC Education Loan Scheme, eligible students can get up to ₹20 Lakhs for professional courses in India and ₹30 Lakhs for studies abroad at 4% p.a. (3.5% for female students). Repayment begins 6 months after completing your degree or upon getting a job, whichever is earlier.";
+  if (q.includes("document") || q.includes("doc") || q.includes("paper") || q.includes("certificate") || q.includes("proof") || q.includes("upload")) {
+    return "Mandatory Verification Documents:\n1. Identity & Address Proof: Aadhaar Card / PAN Card,\n2. Financial Proof: Income Certificate / Form 16 / ITR-4 Ack,\n3. Business Proof: MSME Udyam Certificate / GST Returns (GSTR-3B),\n4. Category Proof: Caste Certificate (where applicable),\n5. Bank Details: 6-month bank statement / passbook. You can upload these in the 'Upload / Scan Document' tab for instant OCR field extraction.";
+  }
+  if (q.includes("women") || q.includes("female") || q.includes("msy") || q.includes("mahila")) {
+    return "Special Provisions for Women Entrepreneurs:\n1. Mahila Samriddhi Yojana (MSY): Concessional loans up to ₹1,40,000 at 4% p.a. (3.5% with timely rebate).\n2. Stand-Up India: Collateral-free credit from ₹10 Lakhs to ₹1 Crore for greenfield enterprises.\n3. PMEGP: Receives maximum 35% special category subsidy.";
+  }
+  if (q.includes("artisan") || q.includes("craft") || q.includes("vishwakarma") || q.includes("ssy")) {
+    return "Artisan & Traditional Craftsmen Programs:\n1. PM Vishwakarma: ₹15,000 toolkit incentive, 5% collateral-free credit, and skill stipend.\n2. Shilpi Samriddhi Yojana (SSY): Micro-loans up to ₹1,40,000 at 5% p.a. for raw materials and modern tools.";
   }
   if (q.includes("eligible") || q.includes("eligibility") || q.includes("criteria") || q.includes("income") || q.includes("qualify")) {
-    return "Base Eligibility Criteria: 1. Applicant age between 18 and 65 years, 2. Belongs to SC/OBC/Safai Karamchari target community, 3. Annual family income below ₹3.00 Lakhs for concessional schemes (up to ₹5 Lakhs for scholarships/education), 4. Valid caste certificate. Check your real-time status instantly using our '7-Step Questionnaire' or the 'Path to Eligibility Simulator'.";
+    return "Verified Eligibility Factors:\n1. Age: 18 to 65 years,\n2. Financial Metric: Income / turnover within scheme limits,\n3. Target Group: Individual / MSME / Woman / SC / OBC / General,\n4. Documentation: Verified government certificates on file. Use the 'Find Schemes' questionnaire or 'Evaluation Bench' to see exact rule clause determinations.";
   }
-  if (q.includes("interest") || q.includes("emi") || q.includes("rate") || q.includes("calculator") || q.includes("percentage")) {
-    return "Interest rates under national welfare schemes and partner institutions are heavily subsidized: 3.5%–4% for women and education loans, 5% for micro-credit (MCF) and artisans (SSY), and 6% for general term loans. These are far below commercial bank rates (11%–14%). Use our 'EMI Calculator' to compute exact monthly repayments including grace periods.";
+  if (q.includes("interest") || q.includes("emi") || q.includes("rate") || q.includes("calculator")) {
+    return "Government schemes feature deeply concessional interest rates (3.5% to 8% p.a.) compared to commercial bank rates (11%–15%), along with 6–12 months moratorium periods. You can compute exact payments on our 'Loan & Subsidy Calculator' page.";
   }
-  if (q.includes("bank") || q.includes("pune") || q.includes("branch") || q.includes("partner") || q.includes("where to apply") || q.includes("channel")) {
-    return "You can apply through authorized State Channelizing Agencies (SCAs) and Public Sector Banks. In Pune and Maharashtra, key nodal partners include Bank of Maharashtra (Shivajinagar, FC Road), State Bank of India (Camp Branch), and Bank of Baroda. Visit our 'Locate Partner' page for interactive branch locator and directions.";
+  if (q.includes("hello") || q.includes("hi") || q.includes("hey") || q.includes("help")) {
+    return "Hello! I am Samarth AI, your Financial Policy Discovery & Application Assistant. I can help you find government subsidies, tax deductions (Sec 44AD / 80JJAA), collateral-free credit guarantees, check statutory eligibility rules, and generate bank application dossiers. What assistance do you need today?";
   }
-  if (q.includes("stack") || q.includes("convergence") || q.includes("pmegp") || q.includes("subsidy") || q.includes("solar")) {
-    return "Our 'Policy Stacking Optimizer' algorithmically converges capital subsidies (like 35% PMEGP margin money) with concessional interest rates (NSFDC 4-6%) and rooftop solar grants (PM Surya Ghar up to ₹78,000) without double-dipping violations. Check the 'Stacking & Simulator' tab in the navbar!";
-  }
-  if (q.includes("hello") || q.includes("hi") || q.includes("hey") || q.includes("who are you") || q.includes("help")) {
-    return "Hello! I am Samarth AI. I can guide you through 27+ verified government financial policies, check your statutory eligibility, explain required documents, calculate EMI benefits, and help you get a bank-ready dossier. What kind of funding or scheme are you exploring today?";
-  }
-  return "Samarth connects you to verified central and state financial schemes offering 4%–6% concessional credit, up to 35% capital subsidies, and collateral-free loan guarantees. You can use our 'Find Scheme' questionnaire to discover your top match or download a certified Bank Dossier.";
+  return "Samarth helps individuals and small businesses discover verified government subsidies, tax deductions, and concessional credit programs. You can use 'Find Schemes' to check eligibility or explore the 'Evaluation Bench' for 3-state test benchmarks.";
 };
 
 // --- AI CHATBOT COMPONENT ---
@@ -3003,11 +2980,11 @@ const Navbar = ({ lang, setLang, t, mobileMenuOpen, setMobileMenuOpen }) => (
             Samarth
           </Link>
         </div>
-        <div className="flex items-center space-x-2 sm:space-x-6">
+        <div className="flex items-center space-x-2 sm:space-x-5">
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `hidden lg:block font-semibold transition-colors ${isActive ? "text-secondary underline underline-offset-8 decoration-2" : "text-on-surface hover:text-secondary"}`
+              `hidden lg:block font-semibold transition-colors text-sm ${isActive ? "text-secondary underline underline-offset-8 decoration-2" : "text-on-surface hover:text-secondary"}`
             }
           >
             {t.navHome}
@@ -3015,73 +2992,59 @@ const Navbar = ({ lang, setLang, t, mobileMenuOpen, setMobileMenuOpen }) => (
           <NavLink
             to="/find"
             className={({ isActive }) =>
-              `hidden sm:block font-semibold transition-colors ${isActive ? "text-secondary underline underline-offset-8 decoration-2" : "text-on-surface hover:text-secondary"}`
+              `hidden sm:block font-semibold transition-colors text-sm ${isActive ? "text-secondary underline underline-offset-8 decoration-2" : "text-on-surface hover:text-secondary"}`
             }
           >
             {t.navFind}
           </NavLink>
           <NavLink
+            to="/explore"
+            className={({ isActive }) =>
+              `hidden lg:block font-semibold transition-colors text-sm ${isActive ? "text-secondary underline underline-offset-8 decoration-2" : "text-on-surface hover:text-secondary"}`
+            }
+          >
+            {t.exploreSchemes}
+          </NavLink>
+          <NavLink
             to="/calculator"
             className={({ isActive }) =>
-              `hidden sm:block font-semibold transition-colors ${isActive ? "text-secondary underline underline-offset-8 decoration-2" : "text-on-surface hover:text-secondary"}`
+              `hidden sm:block font-semibold transition-colors text-sm ${isActive ? "text-secondary underline underline-offset-8 decoration-2" : "text-on-surface hover:text-secondary"}`
             }
           >
             {t.emiBtn}
           </NavLink>
           <NavLink
-            to="/admin"
+            to="/partners"
             className={({ isActive }) =>
-              `hidden xl:flex items-center gap-1 font-semibold transition-colors ${isActive ? "text-secondary underline underline-offset-8 decoration-2" : "text-on-surface hover:text-secondary"}`
+              `hidden md:flex font-semibold items-center text-sm px-3.5 py-1.5 rounded-lg transition-colors text-on-secondary-fixed bg-secondary-fixed hover:bg-secondary-fixed-dim ${isActive ? "ring-2 ring-primary ring-offset-2" : ""}`
             }
-            title="Samarth Nodal Analytics Dashboard"
           >
-            <ShieldAlert size={16} className="text-secondary" />{" "}
-            {t.navAdmin}
+            <MapPin className="mr-1.5" size={16} /> {t.navLocate}
           </NavLink>
           <NavLink
             to="/testbench"
             className={({ isActive }) =>
-              `hidden md:flex items-center gap-1.5 font-bold px-3 py-1.5 rounded-lg border text-xs transition-colors ${
+              `hidden sm:flex items-center gap-1.5 font-bold px-3 py-1.5 rounded-lg border text-xs transition-all shadow-sm ${
                 isActive
-                  ? "bg-indigo-700 text-white border-indigo-700 shadow"
-                  : "bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100"
+                  ? "bg-indigo-900 text-white border-indigo-900 shadow-md ring-2 ring-indigo-400"
+                  : "bg-indigo-50 text-indigo-800 border-indigo-200 hover:bg-indigo-100"
               }`
             }
-            title="Statutory Evaluation Test Bench (3-State Triage & Test Scenarios)"
+            title="Statutory Policy Evaluation Bench (3-State Triage & Test Scenarios)"
           >
-            <Scale size={14} /> Evaluation Bench
-          </NavLink>
-          <NavLink
-            to="/optimizer"
-            className={({ isActive }) =>
-              `hidden md:flex items-center gap-1.5 font-bold px-3 py-1.5 rounded-lg border text-xs transition-colors ${
-                isActive
-                  ? "bg-amber-600 text-white border-amber-600 shadow"
-                  : "bg-amber-50 text-amber-900 border-amber-200 hover:bg-amber-100"
-              }`
-            }
-            title="Scheme Stacking & Path to Eligibility Simulator"
-          >
-            <Sparkles size={14} className="text-amber-500" /> Stacking & Simulator
-          </NavLink>
-          <NavLink
-            to="/partners"
-            className={({ isActive }) =>
-              `hidden sm:flex font-semibold items-center px-4 py-2 rounded-lg transition-colors text-on-secondary-fixed bg-secondary-fixed hover:bg-secondary-fixed-dim ${isActive ? "ring-2 ring-primary ring-offset-2" : ""}`
-            }
-          >
-            <MapPin className="mr-1.5" size={18} /> {t.navLocate}
+            <Scale size={14} className="text-indigo-600" />
+            <span>⚖️ Evaluation Bench</span>
           </NavLink>
 
           <select
             value={lang}
             onChange={(e) => setLang(e.target.value)}
             aria-label="Select language"
-            className="ml-2 sm:ml-4 bg-surface border border-surface-container text-on-surface font-bold py-2 px-2 sm:px-3 rounded-lg focus:outline-none focus:border-secondary"
+            className="ml-2 sm:ml-3 bg-surface border border-surface-container text-on-surface font-bold py-1.5 px-2 sm:px-3 rounded-lg focus:outline-none focus:border-secondary text-xs sm:text-sm"
           >
             <option value="en">EN</option>
             <option value="hi">हि</option>
-            <option value="as">অস</option>
+            <option value="as">অस</option>
           </select>
 
           {/* Mobile hamburger button */}
@@ -3142,28 +3105,12 @@ const Navbar = ({ lang, setLang, t, mobileMenuOpen, setMobileMenuOpen }) => (
             {t.navLocate}
           </NavLink>
           <NavLink
-            to="/admin"
-            className={({ isActive }) =>
-              `block px-3 py-2.5 rounded-lg font-semibold text-sm ${isActive ? "bg-secondary-fixed text-secondary" : "text-on-surface hover:bg-surface-container"}`
-            }
-          >
-            {t.navAdmin}
-          </NavLink>
-          <NavLink
             to="/testbench"
             className={({ isActive }) =>
-              `block px-3 py-2.5 rounded-lg font-semibold text-sm ${isActive ? "bg-indigo-100 text-indigo-800" : "text-on-surface hover:bg-surface-container"}`
+              `block px-3 py-2.5 rounded-lg font-bold text-sm ${isActive ? "bg-indigo-900 text-white" : "bg-indigo-50 text-indigo-800 hover:bg-indigo-100"}`
             }
           >
-            ⚖️ Evaluation Test Bench
-          </NavLink>
-          <NavLink
-            to="/optimizer"
-            className={({ isActive }) =>
-              `block px-3 py-2.5 rounded-lg font-semibold text-sm ${isActive ? "bg-amber-100 text-amber-900" : "text-on-surface hover:bg-surface-container"}`
-            }
-          >
-            ⚡ Scheme Stacking & Simulator
+            ⚖️ Evaluation Test Bench (3-State Triage)
           </NavLink>
         </div>
       </div>
