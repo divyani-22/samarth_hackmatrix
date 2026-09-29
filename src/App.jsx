@@ -2923,49 +2923,6 @@ const PrivacyPage = ({ lang }) => {
   );
 };
 
-// --- OPTIMIZER & CONVERGENCE PAGE ---
-const OptimizerPage = ({ lang }) => {
-  const [activeTab, setActiveTab] = useState("stacker");
-  return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-8 animate-in fade-in duration-500">
-      <div className="flex justify-center mb-6">
-        <div className="flex items-center gap-2 p-1.5 bg-slate-100 rounded-2xl border border-slate-200">
-          <button
-            type="button"
-            onClick={() => setActiveTab("stacker")}
-            className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
-              activeTab === "stacker"
-                ? "bg-indigo-700 text-white shadow-sm"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
-          >
-            <Sparkles size={15} className={activeTab === "stacker" ? "text-amber-400" : "text-amber-500"} />
-            <span>Scheme Stacking & Convergence</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveTab("simulator")}
-            className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
-              activeTab === "simulator"
-                ? "bg-indigo-700 text-white shadow-sm"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
-          >
-            <Compass size={15} className={activeTab === "simulator" ? "text-emerald-300" : "text-emerald-600"} />
-            <span>Path to Eligibility Simulator</span>
-          </button>
-        </div>
-      </div>
-
-      {activeTab === "stacker" ? (
-        <PolicyStackOptimizer lang={lang} />
-      ) : (
-        <PathToEligibilitySimulator lang={lang} />
-      )}
-    </div>
-  );
-};
-
 // --- NAVBAR COMPONENT ---
 const Navbar = ({ lang, setLang, t, mobileMenuOpen, setMobileMenuOpen }) => (
   <nav className="bg-surface/80 backdrop-blur-md shadow-sm border-b border-surface-container sticky top-0 z-50 transition-all">
@@ -3281,21 +3238,8 @@ function App() {
           <Route path="/results" element={<ResultsPage lang={lang} />} />
           <Route path="/calculator" element={<CalculatorPage lang={lang} />} />
           <Route path="/partners" element={<PartnersPage lang={lang} />} />
-          <Route path="/admin" element={<AdminDashboard lang={lang} />} />
           <Route path="/testbench" element={<EvaluationTestBench lang={lang} />} />
-          <Route path="/optimizer" element={<OptimizerPage lang={lang} />} />
           <Route path="/privacy" element={<PrivacyPage lang={lang} />} />
-          <Route
-            path="/ai-analyzer"
-            element={
-              <div className="max-w-4xl mx-auto py-4">
-                <AIBusinessAnalyzer
-                  lang={lang}
-                  onSelectScheme={(s) => navigate("/scheme/" + s.id)}
-                />
-              </div>
-            }
-          />
           <Route
             path="*"
             element={
