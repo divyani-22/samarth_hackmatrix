@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Sparkles, Globe, ChevronDown, Check, Menu, X, ArrowRight, Layers, Compass, BrainCircuit, Calculator, MapPin, Scale } from "lucide-react";
+import FinanceLogo from "./FinanceLogo";
 
 export default function Navbar({ lang, setLang, onOpenEligibility }) {
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
@@ -29,10 +30,10 @@ export default function Navbar({ lang, setLang, onOpenEligibility }) {
     <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-neutral-200/80 transition-all shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
-        {/* Brand Wordmark with Small Orange Icon */}
+        {/* Brand Wordmark with Pure Finance Logo */}
         <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-xl bg-[#FF6B3D] flex items-center justify-center text-white shadow-orange-glow transition-transform duration-300 group-hover:scale-105">
-            <Sparkles size={18} className="text-white fill-white" />
+          <div className="w-10 h-10 rounded-2xl bg-white border border-[#E5E7EB] shadow-xs flex items-center justify-center p-1.5 transition-transform duration-300 group-hover:scale-105">
+            <FinanceLogo size={28} className="w-full h-full" />
           </div>
           <div className="flex items-baseline gap-1.5">
             <span className="text-2xl font-black tracking-tight text-[#111827] font-['Urbanist',sans-serif]">

@@ -1,5 +1,6 @@
 import React from "react";
 import { Sparkles, ArrowRight, Mail, Shield } from "lucide-react";
+import FinanceLogo from "./FinanceLogo";
 
 export default function FooterBento({ onGetStarted }) {
   return (
@@ -13,7 +14,7 @@ export default function FooterBento({ onGetStarted }) {
           <div className="md:col-span-5 bento-card bg-[#1E1E1E] p-8 rounded-[32px] border border-white/10 shadow-bento-dark flex flex-col justify-between h-[260px] sm:h-[280px]">
             <div>
               <div className="flex items-center gap-2 mb-3 text-neutral-400 text-xs font-semibold">
-                <Sparkles size={14} className="text-[#FF6B3D]" />
+                <FinanceLogo size={16} className="w-4 h-4" />
                 <span className="text-white font-bold">Samarth Welfare AI</span>
               </div>
               <h3 className="text-3xl sm:text-4xl font-black text-white font-['Urbanist',sans-serif]">
