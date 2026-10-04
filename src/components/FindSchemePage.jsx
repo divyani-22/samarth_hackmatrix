@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { 
   Sparkles, 
   ArrowRight, 
@@ -18,9 +19,12 @@ import { matchSchemes } from "../data/schemeMatcher";
 import ApplicationDossier from "./ApplicationDossier";
 
 export default function FindSchemePage({ lang = "en" }) {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [step, setStep] = useState(1);
-  const [showResults, setShowResults] = useState(false);
   const [selectedDossierScheme, setSelectedDossierScheme] = useState(null);
+
+  const isResultsPage = location.pathname.includes("results");
 
   const [formData, setFormData] = useState({
     purpose: "biz",
@@ -45,7 +49,7 @@ export default function FindSchemePage({ lang = "en" }) {
     if (step < totalSteps) {
       setStep(step + 1);
     } else {
-      setShowResults(true);
+      navigate("/results");
     }
   };
 
@@ -82,7 +86,7 @@ export default function FindSchemePage({ lang = "en" }) {
           </p>
         </div>
 
-        {!showResults ? (
+        {!isResultsPage ? (
           /* Step Wizard Bento Card */
           <div className="bento-card bg-white p-7 sm:p-10 rounded-[32px] border border-[#E5E5E5] shadow-bento-soft space-y-8">
             
@@ -112,10 +116,10 @@ export default function FindSchemePage({ lang = "en" }) {
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
-                    { id: "start", label: "Start New Business", desc: "For new ventures, shop setups, equipment" },
-                    { id: "expand", label: "Expand Existing Business", desc: "Working capital, machinery upgrade" },
-                    { id: "edu", label: "Higher Education Loan", desc: "Studies in India or Abroad" },
-                    { id: "artisan", label: "Artisan / Traditional Craft", desc: "Handicrafts, weaving, pottery, tools" },
+                    { id: "start", label: "Start Business", desc: "For new ventures, shop setups, equipment" },
+                    { id: "expand", label: "Expand Business", desc: "Working capital, machinery upgrade" },
+                    { id: "edu", label: "Education", desc: "Studies in India or Abroad" },
+                    { id: "artisan", label: "Artisan", desc: "Handicrafts, weaving, pottery, tools" },
                   ].map((item) => (
                     <button
                       key={item.id}
@@ -372,7 +376,7 @@ export default function FindSchemePage({ lang = "en" }) {
                 onClick={handleNext}
                 className="px-8 py-3.5 rounded-full bg-[#FF6B3D] hover:bg-[#ff5722] text-white text-xs font-bold shadow-orange-glow transition-all flex items-center gap-2 cursor-pointer"
               >
-                <span>{step === totalSteps ? "Compute Matches" : "Continue"}</span>
+                <span>{step === totalSteps ? "Find Matches" : "Continue"}</span>
                 <ArrowRight size={14} />
               </button>
             </div>
@@ -387,7 +391,7 @@ export default function FindSchemePage({ lang = "en" }) {
               </h2>
               <button
                 onClick={() => {
-                  setShowResults(false);
+                  navigate("/find");
                   setStep(1);
                 }}
                 className="px-4 py-2 rounded-full bg-white hover:bg-neutral-100 border border-neutral-200 text-xs font-bold text-neutral-700 flex items-center gap-1.5 shadow-xs cursor-pointer"

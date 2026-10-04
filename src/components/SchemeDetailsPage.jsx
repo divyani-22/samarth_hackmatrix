@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, ExternalLink, ShieldCheck, FileText, Download, Building2, Sparkles, CheckCircle2 } from "lucide-react";
 import schemesData from "../data/schemesData.json";
 import { schemes as rawSchemes } from "../data/schemes";
+import ApplicationDossier from "./ApplicationDossier";
 
 export default function SchemeDetailsPage({ onDownloadDossier, lang = "en" }) {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [showDossierModal, setShowDossierModal] = useState(false);
 
   // Find scheme in json or full schemes array
   const scheme =
@@ -119,6 +121,7 @@ export default function SchemeDetailsPage({ onDownloadDossier, lang = "en" }) {
           <div className="pt-6 border-t border-neutral-100 flex flex-col sm:flex-row items-center justify-between gap-4">
             <button
               onClick={() => {
+                setShowDossierModal(true);
                 if (onDownloadDossier) onDownloadDossier(scheme);
               }}
               className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#111111] hover:bg-neutral-800 text-white text-xs font-bold flex items-center justify-center gap-2 shadow-xs cursor-pointer"
@@ -141,6 +144,19 @@ export default function SchemeDetailsPage({ onDownloadDossier, lang = "en" }) {
         </div>
 
       </div>
+
+      {showDossierModal && (
+        <ApplicationDossier
+          scheme={scheme}
+          userData={{
+            income: "200000",
+            purpose: "biz",
+            age: 28,
+          }}
+          lang={lang}
+          onClose={() => setShowDossierModal(false)}
+        />
+      )}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { Search, ArrowRight, Sparkles, Building2, CheckCircle2, ChevronRight, SlidersHorizontal, Eye } from "lucide-react";
 import schemesData from "../data/schemesData.json";
 
@@ -154,13 +155,19 @@ export default function ExploreSchemes({ onSelectScheme, filterState }) {
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => onSelectScheme(scheme)}
+                  <Link
+                    to={`/scheme/${scheme.id}`}
+                    onClick={(e) => {
+                      if (onSelectScheme) {
+                        e.preventDefault();
+                        onSelectScheme(scheme);
+                      }
+                    }}
                     className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#111111] hover:bg-[#FF6B3D] text-white text-xs font-bold transition-all duration-200 cursor-pointer shadow-xs"
                   >
                     <span>View details</span>
                     <ChevronRight size={14} />
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}

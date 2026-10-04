@@ -84,10 +84,15 @@ export default function App() {
             path="/explore"
             element={
               <ExploreSchemes
-                onSelectScheme={(scheme) => setSelectedScheme(scheme)}
                 filterState={eligibilityCriteria?.state}
               />
             }
+          />
+
+          {/* Results Route */}
+          <Route
+            path="/results"
+            element={<FindSchemePage lang={lang} />}
           />
 
           {/* Scheme Details Page */}

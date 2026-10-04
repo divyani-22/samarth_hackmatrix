@@ -63,9 +63,9 @@ export default function CalculatorPage({ lang = "en" }) {
               </div>
               <input
                 type="range"
-                min="10000"
+                min="50000"
                 max="5000000"
-                step="25000"
+                step="10000"
                 value={loanAmount}
                 onChange={(e) => setLoanAmount(Number(e.target.value))}
                 className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-[#FF6B3D]"
