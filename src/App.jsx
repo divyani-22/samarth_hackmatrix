@@ -48,7 +48,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#111111] text-[#111111] font-sans selection:bg-[#FF6B3D] selection:text-white flex flex-col">
+    <div className="min-h-screen bg-[#F4F5F7] text-[#111827] font-sans selection:bg-[#FF6B3D] selection:text-white flex flex-col">
       
       {/* 1. Global Navbar */}
       <Navbar

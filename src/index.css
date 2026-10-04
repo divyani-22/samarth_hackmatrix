@@ -1,20 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-dark: #111111;
+  --color-bg-canvas: #f4f5f7;
+  --color-bg-canvas-subtle: #fff7f4;
+  --color-card-white: #ffffff;
   --color-card-dark: #1e1e1e;
-  --color-card-dark-hover: #262626;
-  --color-bg-light: #f2f2f2;
-  --color-card-light: #ffffff;
   
   --color-accent-orange: #ff6b3d;
   --color-accent-orange-hover: #ff5722;
   --color-accent-yellow: #f5e51b;
   --color-success-green: #22c55e;
   
-  --color-text-dark: #111111;
-  --color-text-muted: #8a8a8a;
-  --color-border-subtle: #e5e5e5;
+  --color-text-main: #111827;
+  --color-text-muted: #6b7280;
+  --color-border-subtle: #e5e7eb;
   --color-border-dark: #2a2a2a;
   
   /* Category supporting accents */
@@ -29,16 +28,14 @@
 }
 
 :root {
-  --bg-dark: #111111;
-  --card-dark: #1e1e1e;
-  --bg-light: #f2f2f2;
-  --card-light: #ffffff;
+  --bg-canvas: #f4f5f7;
+  --card-white: #ffffff;
   --accent-orange: #ff6b3d;
   --accent-yellow: #f5e51b;
   --success-green: #22c55e;
-  --text-dark: #111111;
-  --text-muted: #8a8a8a;
-  --border: #e5e5e5;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
 }
 
 * {
@@ -48,8 +45,8 @@
 html {
   scroll-behavior: smooth;
   font-family: var(--font-sans);
-  background-color: #111111;
-  color: #111111;
+  background-color: #f4f5f7;
+  color: #111827;
 }
 
 body {
@@ -58,6 +55,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f5f7;
 }
 
 /* Custom Bento & Component Utilities */
@@ -71,15 +69,19 @@ body {
 }
 
 .shadow-bento-soft {
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05), 0 20px 25px -5px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04), 0 20px 25px -5px rgba(0, 0, 0, 0.02);
+}
+
+.shadow-bento-card {
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
 }
 
 .shadow-bento-dark {
-  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.4), 0 0 1px 1px rgba(255, 255, 255, 0.05);
 }
 
 .shadow-orange-glow {
-  box-shadow: 0 8px 25px -4px rgba(255, 107, 61, 0.4);
+  box-shadow: 0 8px 25px -4px rgba(255, 107, 61, 0.35);
 }
 
 /* Custom Scrollbar */
@@ -88,22 +90,12 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #111111;
+  background: #f4f5f7;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2a2a;
+  background: #d1d5db;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #ff6b3d;
-}
-
-/* Animation utilities */
-@keyframes pulseSubtle {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(1.02); }
-}
-
-.animate-pulse-subtle {
-  animation: pulseSubtle 3s ease-in-out infinite;
 }

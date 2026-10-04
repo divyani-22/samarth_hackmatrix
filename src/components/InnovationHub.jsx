@@ -40,19 +40,19 @@ export default function InnovationHub({ lang = "en" }) {
   ];
 
   return (
-    <section id="innovation-hub" className="w-full bg-[#111111] py-20 px-4 sm:px-6 lg:px-8 text-white border-t border-white/10">
+    <section id="innovation-hub" className="w-full bg-[#F4F5F7] py-20 px-4 sm:px-6 lg:px-8 text-[#111827] border-b border-[#E5E7EB]">
       <div className="max-w-7xl mx-auto space-y-10">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1E1E1E] border border-white/10 text-xs font-semibold text-neutral-300 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#E5E7EB] text-xs font-bold text-neutral-700 shadow-xs">
             <Sparkles size={13} className="text-[#FF6B3D]" />
             <span>AI Policy Innovation Suite</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white font-['Urbanist',sans-serif]">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#111827] font-['Urbanist',sans-serif]">
             Intelligent Policy Tools
           </h2>
-          <p className="text-sm sm:text-base text-neutral-400">
+          <p className="text-sm sm:text-base text-neutral-600">
             Advanced convergence optimization, counterfactual simulation, and OCR verification for Bharat.
           </p>
         </div>
@@ -69,23 +69,23 @@ export default function InnovationHub({ lang = "en" }) {
                 className={`bento-card p-5 rounded-[24px] text-left transition-all duration-300 cursor-pointer border flex flex-col justify-between h-[150px] ${
                   isActive
                     ? "bg-[#FF6B3D] text-white border-transparent shadow-orange-glow scale-[1.02]"
-                    : "bg-[#1E1E1E] text-neutral-300 border-white/10 hover:border-white/20 hover:bg-[#252525]"
+                    : "bg-white text-neutral-700 border-[#E5E7EB] hover:border-neutral-300 hover:bg-neutral-50 shadow-xs"
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${isActive ? "bg-white/20 text-white" : "bg-white/5 text-[#FF6B3D]"}`}>
+                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${isActive ? "bg-white/20 text-white" : "bg-orange-50 text-[#FF6B3D]"}`}>
                     <Icon size={18} />
                   </div>
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${isActive ? "bg-white/20 text-white" : "bg-white/5 text-neutral-400"}`}>
+                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${isActive ? "bg-white/20 text-white" : "bg-neutral-100 text-neutral-600"}`}>
                     {tool.tag}
                   </span>
                 </div>
 
                 <div>
-                  <div className={`text-base font-bold font-['Urbanist',sans-serif] ${isActive ? "text-white" : "text-white"}`}>
+                  <div className={`text-base font-bold font-['Urbanist',sans-serif] ${isActive ? "text-white" : "text-[#111827]"}`}>
                     {tool.label}
                   </div>
-                  <p className={`text-xs line-clamp-1 mt-0.5 ${isActive ? "text-white/80" : "text-neutral-400"}`}>
+                  <p className={`text-xs line-clamp-1 mt-0.5 ${isActive ? "text-white/80" : "text-neutral-500"}`}>
                     {tool.description}
                   </p>
                 </div>
@@ -95,7 +95,7 @@ export default function InnovationHub({ lang = "en" }) {
         </div>
 
         {/* Active Tool Content Container (Bento Light Window) */}
-        <div className="bg-white text-[#111111] p-6 sm:p-8 lg:p-10 rounded-[32px] border border-[#E5E5E5] shadow-2xl overflow-hidden animate-in fade-in duration-300">
+        <div className="bg-white text-[#111827] p-6 sm:p-8 lg:p-10 rounded-[32px] border border-[#E5E7EB] shadow-bento-soft overflow-hidden animate-in fade-in duration-300">
           {activeTab === "optimizer" && <PolicyStackOptimizer lang={lang} />}
           {activeTab === "simulator" && <PathToEligibilitySimulator lang={lang} />}
           {activeTab === "analyzer" && <AIBusinessAnalyzer lang={lang} />}
