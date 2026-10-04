@@ -134,9 +134,41 @@ export default function Navbar({ lang, setLang, onOpenEligibility }) {
           </NavLink>
         </nav>
 
-        {/* Right Actions: Language Switcher & Pill Button */}
+        {/* Right Actions: Language Switcher, Sign In Button & Pill Button */}
         <div className="hidden sm:flex items-center gap-3">
           
+          {/* Sign In / User Profile Button */}
+          {(() => {
+            const storedUser = localStorage.getItem("samarth_user");
+            if (storedUser) {
+              try {
+                const user = JSON.parse(storedUser);
+                const firstName = user.name ? user.name.split(" ")[0] : "Profile";
+                return (
+                  <Link
+                    to="/signin"
+                    className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-[#F4F5F7] hover:bg-slate-200 text-[#111827] text-xs font-bold border border-[#E5E7EB] transition-colors"
+                  >
+                    <span className="w-5 h-5 rounded-full bg-[#FF6B3D] text-white flex items-center justify-center text-[10px]">
+                      {firstName.charAt(0).toUpperCase()}
+                    </span>
+                    <span className="max-w-[100px] truncate">{firstName}</span>
+                  </Link>
+                );
+              } catch (e) {
+                // fallback
+              }
+            }
+            return (
+              <Link
+                to="/signin"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-[#111827] text-xs font-bold border border-[#E5E7EB] hover:border-[#FF6B3D] hover:text-[#FF6B3D] transition-colors"
+              >
+                <span>Sign In</span>
+              </Link>
+            );
+          })()}
+
           {/* Language Switcher Dropdown */}
           <div className="relative">
             <button
@@ -198,6 +230,16 @@ export default function Navbar({ lang, setLang, onOpenEligibility }) {
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white border-b border-neutral-200 px-6 py-6 space-y-4 animate-in slide-in-from-top duration-200">
+          <div className="pb-3 border-b border-neutral-100">
+            <Link
+              to="/signin"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full py-2.5 px-4 rounded-full bg-[#FF6B3D] text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm"
+            >
+              <span>Sign In / Profile</span>
+              <ArrowRight size={13} />
+            </Link>
+          </div>
           <nav className="flex flex-col gap-2">
             <Link
               to="/"

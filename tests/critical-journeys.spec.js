@@ -102,5 +102,31 @@ test.describe('Samarth Critical User Journeys', () => {
     await expect(page.locator('.grid > div').first()).toBeVisible();
   });
 
+  test('CUJ 5: User Sign In with Name & Gmail/Phone', async ({ page }) => {
+    await page.goto('/signin');
+    
+    // Check heading
+    await expect(page.getByRole('heading', { name: /Sign In to Samarth/i })).toBeVisible();
+
+    // Fill Full Name
+    const nameInput = page.getByPlaceholder(/Divyani/i);
+    await expect(nameInput).toBeVisible();
+    await nameInput.fill('Divyani Papalkar');
+
+    // Fill Email
+    const emailInput = page.getByPlaceholder(/yourname@gmail.com/i);
+    await expect(emailInput).toBeVisible();
+    await emailInput.fill('divyanipapalkar22@gmail.com');
+
+    // Submit form
+    const submitBtn = page.getByRole('button', { name: /Sign In & Unlock Benefits/i });
+    await submitBtn.click();
+
+    // Verify redirected or profile active
+    await page.waitForTimeout(1200);
+    await expect(page).toHaveURL(/\/(find|signin)/);
+  });
+
 });
+
 

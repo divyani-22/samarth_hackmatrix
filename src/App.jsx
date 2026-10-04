@@ -16,6 +16,7 @@ import FooterBento from "./components/FooterBento";
 import SchemeDrawerModal from "./components/SchemeDrawerModal";
 import QuickEligibilityModal from "./components/QuickEligibilityModal";
 import AIChatbot from "./components/AIChatbot";
+import SignInPage from "./pages/SignInPage";
 
 export default function App() {
   const [lang, setLang] = useState("en");
@@ -176,6 +177,16 @@ export default function App() {
                 </div>
               </div>
             }
+          />
+
+          {/* Sign In / Sign Up Page (Gmail or Phone OTP with Name) */}
+          <Route
+            path="/signin"
+            element={<SignInPage lang={lang} />}
+          />
+          <Route
+            path="/login"
+            element={<SignInPage lang={lang} />}
           />
 
           {/* 404 Fallback */}
