@@ -193,39 +193,39 @@ Analyze this uploaded document (${selectedDocType}) and extract details in valid
   };
 
   return (
-    <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm mb-12">
+    <div className="bg-white border border-[#E5E7EB] rounded-[32px] p-6 md:p-8 shadow-sm mb-12">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-2 border border-emerald-200">
-            <Sparkles size={13} className="text-emerald-600" />
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#FF6B3D]/10 text-[#FF6B3D] text-xs font-bold uppercase tracking-wider mb-2 border border-[#FF6B3D]/20">
+            <Sparkles size={13} />
             <span>AI Document Intelligence & Policy Extractor</span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#111827] tracking-tight">
             Multi-Document OCR & Eligibility Extractor
           </h2>
           <p className="text-slate-600 text-xs md:text-sm mt-1 max-w-2xl leading-relaxed">
-            Upload your government documents. The multimodal extractor reads the official seals, extracts statutory turnover and income data, and maps them to policy rules.
+            Upload your government documents. The multimodal extractor reads official seals, extracts statutory turnover and income data, and maps them to policy rules.
           </p>
         </div>
       </div>
 
       {/* Document Type Selector Tabs */}
-      <div className="flex flex-wrap items-center gap-2 mb-6 p-1.5 bg-slate-100 rounded-2xl">
+      <div className="flex flex-wrap items-center gap-2 mb-6 p-1.5 bg-[#F4F5F7] rounded-full border border-[#E5E7EB]">
         <button
           onClick={() => { setSelectedDocType("caste"); setExtractedData(null); }}
-          className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-            selectedDocType === "caste" ? "bg-white text-slate-900 shadow-sm" : "text-slate-600 hover:text-slate-900"
+          className={`px-4 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+            selectedDocType === "caste" ? "bg-white text-[#111827] shadow-sm border border-[#E5E7EB]" : "text-slate-600 hover:text-[#111827]"
           }`}
         >
-          <UserCheck size={14} className="text-indigo-600" />
+          <UserCheck size={14} className="text-[#FF6B3D]" />
           <span>Caste / Category Cert</span>
         </button>
 
         <button
           onClick={() => { setSelectedDocType("income_itr"); setExtractedData(null); }}
-          className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-            selectedDocType === "income_itr" ? "bg-white text-slate-900 shadow-sm" : "text-slate-600 hover:text-slate-900"
+          className={`px-4 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+            selectedDocType === "income_itr" ? "bg-white text-[#111827] shadow-sm border border-[#E5E7EB]" : "text-slate-600 hover:text-[#111827]"
           }`}
         >
           <Receipt size={14} className="text-emerald-600" />
@@ -234,8 +234,8 @@ Analyze this uploaded document (${selectedDocType}) and extract details in valid
 
         <button
           onClick={() => { setSelectedDocType("udyam"); setExtractedData(null); }}
-          className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-            selectedDocType === "udyam" ? "bg-white text-slate-900 shadow-sm" : "text-slate-600 hover:text-slate-900"
+          className={`px-4 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+            selectedDocType === "udyam" ? "bg-white text-[#111827] shadow-sm border border-[#E5E7EB]" : "text-slate-600 hover:text-[#111827]"
           }`}
         >
           <Building2 size={14} className="text-blue-600" />
@@ -244,8 +244,8 @@ Analyze this uploaded document (${selectedDocType}) and extract details in valid
 
         <button
           onClick={() => { setSelectedDocType("gst"); setExtractedData(null); }}
-          className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-            selectedDocType === "gst" ? "bg-white text-slate-900 shadow-sm" : "text-slate-600 hover:text-slate-900"
+          className={`px-4 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+            selectedDocType === "gst" ? "bg-white text-[#111827] shadow-sm border border-[#E5E7EB]" : "text-slate-600 hover:text-[#111827]"
           }`}
         >
           <FileText size={14} className="text-amber-600" />
@@ -255,10 +255,10 @@ Analyze this uploaded document (${selectedDocType}) and extract details in valid
 
       {/* Main Upload / Demo Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Upload Zone */}
-        <div className="border-2 border-dashed border-slate-300 hover:border-indigo-500 rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-slate-50/50 hover:bg-indigo-50/30 transition-all">
+        {/* Upload Zone Bento Card */}
+        <div className="border-2 border-dashed border-[#E5E7EB] hover:border-[#FF6B3D]/50 rounded-[28px] p-6 flex flex-col items-center justify-center text-center bg-[#F8F9FA]/60 hover:bg-[#F8F9FA] transition-all">
           <FileUp size={36} className="text-slate-400 mb-2" />
-          <h4 className="font-bold text-slate-800 text-sm mb-1">
+          <h4 className="font-bold text-[#111827] text-sm mb-1">
             Drag & Drop {sampleDocs[selectedDocType].label}
           </h4>
           <p className="text-[11px] text-slate-500 mb-4">
@@ -274,7 +274,7 @@ Analyze this uploaded document (${selectedDocType}) and extract details in valid
           />
           <label
             htmlFor="doc-upload-input"
-            className="bg-white hover:bg-slate-100 text-slate-800 text-xs font-bold px-4 py-2 rounded-xl border border-slate-300 cursor-pointer shadow-sm transition-all"
+            className="rounded-full bg-white hover:bg-[#F4F5F7] text-[#111827] text-xs font-bold px-5 py-2.5 border border-[#E5E7EB] cursor-pointer shadow-xs transition-all"
           >
             Browse Document
           </label>
@@ -288,7 +288,7 @@ Analyze this uploaded document (${selectedDocType}) and extract details in valid
                 type="button"
                 onClick={handleScanUploaded}
                 disabled={isScanning}
-                className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5 cursor-pointer shadow-sm transition-all"
+                className="mt-2 rounded-full bg-[#FF6B3D] hover:bg-[#E05326] text-white text-xs font-bold px-5 py-2 flex items-center gap-1.5 cursor-pointer shadow-sm transition-all"
               >
                 {isScanning ? (
                   <RefreshCw size={13} className="animate-spin" />
@@ -301,10 +301,12 @@ Analyze this uploaded document (${selectedDocType}) and extract details in valid
           )}
         </div>
 
-        {/* 1-Click Verified Sample Demo */}
-        <div className="bg-slate-900 rounded-2xl p-6 text-white flex flex-col justify-between shadow-sm">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">
+        {/* 1-Click Verified Sample Demo Bento Card */}
+        <div className="bg-[#181C24] rounded-[28px] p-6 text-white flex flex-col justify-between shadow-sm relative overflow-hidden">
+          <div className="absolute right-0 top-0 w-64 h-64 bg-[#FF6B3D]/10 rounded-full blur-2xl pointer-events-none" />
+
+          <div className="relative z-10">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#FF6B3D] uppercase tracking-wider mb-2">
               <Sparkles size={14} />
               <span>Instant Evaluator Demo Mode</span>
             </div>
@@ -317,7 +319,7 @@ Analyze this uploaded document (${selectedDocType}) and extract details in valid
             type="button"
             onClick={handleScanSample}
             disabled={isScanning}
-            className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold px-4 py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer"
+            className="relative z-10 w-full rounded-full bg-[#FF6B3D] hover:bg-[#E05326] text-white font-bold px-4 py-3.5 text-xs flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
           >
             {isScanning ? (
               <>
@@ -336,15 +338,15 @@ Analyze this uploaded document (${selectedDocType}) and extract details in valid
 
       {/* Extracted Details Result Card */}
       {extractedData && (
-        <div className="mt-8 bg-slate-50 border border-slate-200 rounded-2xl p-6 animate-in fade-in slide-in-from-top-3 duration-300">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-4 mb-4">
+        <div className="mt-8 bg-[#F8F9FA] border border-[#E5E7EB] rounded-[28px] p-6 animate-in fade-in slide-in-from-top-3 duration-300">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#E5E7EB] pb-4 mb-4">
             <div className="flex items-center gap-2">
               <CheckCircle2 size={18} className="text-emerald-600" />
-              <h3 className="font-bold text-slate-900 text-base">
+              <h3 className="font-bold text-[#111827] text-base">
                 Document Authenticated & Details Extracted
               </h3>
             </div>
-            <span className="text-[11px] font-bold text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-300">
+            <span className="text-[11px] font-bold text-emerald-800 bg-emerald-100 px-3.5 py-1 rounded-full border border-emerald-200">
               {extractedData.verificationStatus || "100% Digitally Verified"}
             </span>
           </div>
@@ -352,20 +354,20 @@ Analyze this uploaded document (${selectedDocType}) and extract details in valid
           {/* Grid of Key Extracted Details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs mb-6">
             {Object.entries(extractedData.extractedFields || {}).map(([key, val]) => (
-              <div key={key} className="bg-white p-3 rounded-xl border border-slate-200">
-                <span className="text-[10px] uppercase font-bold text-slate-500 block mb-1">
+              <div key={key} className="bg-white p-3.5 rounded-2xl border border-[#E5E7EB] shadow-xs">
+                <span className="text-[10px] uppercase font-bold text-slate-400 block mb-1">
                   {key}
                 </span>
-                <span className="font-bold text-slate-900 text-sm">
+                <span className="font-bold text-[#111827] text-sm">
                   {val}
                 </span>
               </div>
             ))}
           </div>
 
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-2 border-t border-slate-200">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-3 border-t border-[#E5E7EB]">
             <p className="text-xs text-slate-600">
-              Issuing Authority: <strong>{extractedData.issuingAuthority}</strong>
+              Issuing Authority: <strong className="text-[#111827]">{extractedData.issuingAuthority}</strong>
             </p>
 
             {onApplyExtractedData && (
@@ -385,7 +387,7 @@ Analyze this uploaded document (${selectedDocType}) and extract details in valid
                     extractedData.type === "udyam" ? "udyam_certificate" : "sales_turnover_summary"
                   ]
                 })}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-5 py-2.5 rounded-xl flex items-center gap-2 shadow transition-all cursor-pointer"
+                className="rounded-full bg-[#FF6B3D] hover:bg-[#E05326] text-white font-bold text-xs px-6 py-2.5 flex items-center gap-2 shadow-sm transition-all cursor-pointer"
               >
                 <span>Auto-Fill Matching Profile</span>
                 <ArrowRight size={14} />

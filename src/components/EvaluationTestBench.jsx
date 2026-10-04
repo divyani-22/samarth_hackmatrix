@@ -39,29 +39,31 @@ export default function EvaluationTestBench({ lang = "en" }) {
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 py-8">
-      {/* Top Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-6 md:p-8 text-white shadow-xl mb-8 border border-indigo-800/40">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+      {/* Top Banner Bento Card */}
+      <div className="bg-[#181C24] rounded-[32px] p-6 md:p-8 text-white shadow-sm mb-8 border border-white/10 relative overflow-hidden">
+        <div className="absolute right-0 top-0 w-96 h-96 bg-[#FF6B3D]/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-2 border border-indigo-400/30">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FF6B3D]/20 text-[#FF6B3D] text-xs font-bold uppercase tracking-wider mb-2 border border-[#FF6B3D]/30">
               <Scale className="w-3.5 h-3.5" /> Statutory Policy Evaluation Bench
             </div>
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
               Test Harness & 3-State Triage Benchmark
             </h1>
-            <p className="text-slate-300 text-sm md:text-base mt-1 max-w-3xl">
+            <p className="text-slate-300 text-sm md:text-base mt-1 max-w-3xl leading-relaxed">
               Live automated test harness verifying determination logic against <strong>Clearly Eligible</strong>, <strong>Clearly Ineligible</strong>, and <strong>Borderline / Manual Review</strong> cases with statutory rule citations.
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-xs px-3 py-1.5 rounded-xl bg-white/10 text-white font-mono">
+            <span className="text-xs px-4 py-1.5 rounded-full bg-white/10 text-white font-mono border border-white/10">
               Live Engine v2.5
             </span>
           </div>
         </div>
 
         {/* Scenario Selector Pills */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
+        <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
           {testScenarios.map((sc) => {
             const isSelected = sc.id === selectedScenarioId;
             let badgeStyle = "bg-emerald-500/20 text-emerald-300 border-emerald-500/40";
@@ -76,15 +78,15 @@ export default function EvaluationTestBench({ lang = "en" }) {
                   setSelectedScenarioId(sc.id);
                   setExpandedSchemeId(null);
                 }}
-                className={`p-4 rounded-2xl text-left transition-all border flex flex-col justify-between ${
+                className={`p-4 rounded-[22px] text-left transition-all border flex flex-col justify-between cursor-pointer ${
                   isSelected
-                    ? "bg-white text-slate-900 shadow-lg scale-[1.02] border-white"
-                    : "bg-slate-800/60 text-slate-200 hover:bg-slate-800 border-slate-700/60"
+                    ? "bg-white text-[#111827] shadow-md scale-[1.02] border-white"
+                    : "bg-white/5 text-slate-200 hover:bg-white/10 border-white/10"
                 }`}
               >
                 <div>
                   <span
-                    className={`inline-block text-[11px] font-bold px-2 py-0.5 rounded-full border mb-2 ${
+                    className={`inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-full border mb-2 ${
                       isSelected
                         ? sc.badgeColor === "red"
                           ? "bg-rose-100 text-rose-800 border-rose-300"
@@ -112,13 +114,13 @@ export default function EvaluationTestBench({ lang = "en" }) {
       {/* Selected Applicant Profile Card & Evaluation Audit Summary */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         {/* Applicant Profile Card */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-          <div className="flex items-center justify-between mb-4 border-b pb-3">
-            <h3 className="font-bold text-slate-900 text-lg flex items-center gap-2">
-              <FileText className="w-5 h-5 text-indigo-600" />
+        <div className="bg-white rounded-[28px] p-6 shadow-sm border border-[#E5E7EB]">
+          <div className="flex items-center justify-between mb-4 border-b border-[#E5E7EB] pb-3">
+            <h3 className="font-bold text-[#111827] text-lg flex items-center gap-2">
+              <FileText className="w-5 h-5 text-[#FF6B3D]" />
               Applicant Profile Data
             </h3>
-            <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 uppercase">
+            <span className="text-xs font-semibold px-3 py-1 rounded-full bg-[#F4F5F7] text-slate-700 uppercase">
               {activeScenario.applicant.entity_type}
             </span>
           </div>
@@ -165,22 +167,22 @@ export default function EvaluationTestBench({ lang = "en" }) {
         </div>
 
         {/* Expected vs Actual Evaluator Matrix */}
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 lg:col-span-2 flex flex-col justify-between">
+        <div className="bg-white rounded-[28px] p-6 shadow-sm border border-[#E5E7EB] lg:col-span-2 flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between mb-4 border-b pb-3">
-              <h3 className="font-bold text-slate-900 text-lg flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-indigo-600" />
+            <div className="flex items-center justify-between mb-4 border-b border-[#E5E7EB] pb-3">
+              <h3 className="font-bold text-[#111827] text-lg flex items-center gap-2">
+                <ShieldCheck className="w-5 h-5 text-[#FF6B3D]" />
                 Evaluator Benchmark Assessment
               </h3>
               <div className="flex items-center gap-2 text-xs">
                 <span className="text-slate-500">Expected Triage:</span>
-                <span className="font-bold px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 font-mono">
+                <span className="font-bold px-3 py-1 rounded-full bg-[#FF6B3D]/10 text-[#FF6B3D] font-mono border border-[#FF6B3D]/20">
                   {activeScenario.expectedTriage}
                 </span>
               </div>
             </div>
 
-            <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-4">
+            <div className="bg-[#F8F9FA] border border-[#E5E7EB] rounded-2xl p-4 mb-4">
               <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">
                 Official Benchmark Note:
               </div>
@@ -190,7 +192,7 @@ export default function EvaluationTestBench({ lang = "en" }) {
             </div>
 
             {activeScenario.flaggedReasons && (
-              <div className="bg-amber-50 border border-amber-200 rounded-xl p-3.5 mb-4">
+              <div className="bg-amber-50/80 border border-amber-200/80 rounded-2xl p-4 mb-4">
                 <div className="text-xs font-bold text-amber-800 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                   <AlertTriangle className="w-3.5 h-3.5" />
                   Borderline Review Triggers Detected:
@@ -205,13 +207,13 @@ export default function EvaluationTestBench({ lang = "en" }) {
           </div>
 
           {/* Triage Counts Bar */}
-          <div className="grid grid-cols-3 gap-3 pt-3 border-t border-slate-100">
+          <div className="grid grid-cols-3 gap-3 pt-4 border-t border-[#E5E7EB]">
             <button
               onClick={() => setActiveFilter("ELIGIBLE")}
-              className={`p-3 rounded-xl border text-center transition-all ${
+              className={`p-3.5 rounded-2xl border text-center transition-all cursor-pointer ${
                 activeFilter === "ELIGIBLE"
-                  ? "bg-emerald-500 text-white border-emerald-600 shadow"
-                  : "bg-emerald-50 text-emerald-900 border-emerald-200 hover:bg-emerald-100"
+                  ? "bg-emerald-500 text-white border-emerald-600 shadow-sm"
+                  : "bg-emerald-50/80 text-emerald-900 border-emerald-200 hover:bg-emerald-100"
               }`}
             >
               <div className="text-2xl font-black">{eligibleCount}</div>
@@ -222,10 +224,10 @@ export default function EvaluationTestBench({ lang = "en" }) {
 
             <button
               onClick={() => setActiveFilter("BORDERLINE_MANUAL_REVIEW")}
-              className={`p-3 rounded-xl border text-center transition-all ${
+              className={`p-3.5 rounded-2xl border text-center transition-all cursor-pointer ${
                 activeFilter === "BORDERLINE_MANUAL_REVIEW"
-                  ? "bg-amber-500 text-white border-amber-600 shadow"
-                  : "bg-amber-50 text-amber-900 border-amber-200 hover:bg-amber-100"
+                  ? "bg-amber-500 text-white border-amber-600 shadow-sm"
+                  : "bg-amber-50/80 text-amber-900 border-amber-200 hover:bg-amber-100"
               }`}
             >
               <div className="text-2xl font-black">{borderlineCount}</div>
@@ -236,10 +238,10 @@ export default function EvaluationTestBench({ lang = "en" }) {
 
             <button
               onClick={() => setActiveFilter("INELIGIBLE")}
-              className={`p-3 rounded-xl border text-center transition-all ${
+              className={`p-3.5 rounded-2xl border text-center transition-all cursor-pointer ${
                 activeFilter === "INELIGIBLE"
-                  ? "bg-rose-500 text-white border-rose-600 shadow"
-                  : "bg-rose-50 text-rose-900 border-rose-200 hover:bg-rose-100"
+                  ? "bg-rose-500 text-white border-rose-600 shadow-sm"
+                  : "bg-rose-50/80 text-rose-900 border-rose-200 hover:bg-rose-100"
               }`}
             >
               <div className="text-2xl font-black">{ineligibleCount}</div>
@@ -253,44 +255,44 @@ export default function EvaluationTestBench({ lang = "en" }) {
 
       {/* Filter Tabs */}
       <div className="flex items-center justify-between gap-4 mb-6">
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-semibold text-slate-700">Display Policy Determinations:</span>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-sm font-semibold text-slate-700 mr-1">Display Policy Determinations:</span>
           <button
             onClick={() => setActiveFilter("ALL")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold border ${
+            className={`px-4 py-2 rounded-full text-xs font-bold border transition-all cursor-pointer ${
               activeFilter === "ALL"
-                ? "bg-slate-900 text-white border-slate-900"
-                : "bg-white text-slate-700 border-slate-300 hover:bg-slate-50"
+                ? "bg-[#111827] text-white border-[#111827] shadow-xs"
+                : "bg-white text-slate-700 border-[#E5E7EB] hover:bg-[#F4F5F7]"
             }`}
           >
             All Policies ({liveResults.length})
           </button>
           <button
             onClick={() => setActiveFilter("ELIGIBLE")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold border ${
+            className={`px-4 py-2 rounded-full text-xs font-bold border transition-all cursor-pointer ${
               activeFilter === "ELIGIBLE"
-                ? "bg-emerald-600 text-white border-emerald-600"
-                : "bg-white text-emerald-800 border-emerald-300 hover:bg-emerald-50"
+                ? "bg-emerald-600 text-white border-emerald-600 shadow-xs"
+                : "bg-white text-emerald-800 border-[#E5E7EB] hover:bg-emerald-50"
             }`}
           >
             Eligible ({eligibleCount})
           </button>
           <button
             onClick={() => setActiveFilter("BORDERLINE_MANUAL_REVIEW")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold border ${
+            className={`px-4 py-2 rounded-full text-xs font-bold border transition-all cursor-pointer ${
               activeFilter === "BORDERLINE_MANUAL_REVIEW"
-                ? "bg-amber-600 text-white border-amber-600"
-                : "bg-white text-amber-800 border-amber-300 hover:bg-amber-50"
+                ? "bg-amber-600 text-white border-amber-600 shadow-xs"
+                : "bg-white text-amber-800 border-[#E5E7EB] hover:bg-amber-50"
             }`}
           >
             Manual Review Needed ({borderlineCount})
           </button>
           <button
             onClick={() => setActiveFilter("INELIGIBLE")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold border ${
+            className={`px-4 py-2 rounded-full text-xs font-bold border transition-all cursor-pointer ${
               activeFilter === "INELIGIBLE"
-                ? "bg-rose-600 text-white border-rose-600"
-                : "bg-white text-rose-800 border-rose-300 hover:bg-rose-50"
+                ? "bg-rose-600 text-white border-rose-600 shadow-xs"
+                : "bg-white text-rose-800 border-[#E5E7EB] hover:bg-rose-50"
             }`}
           >
             Ineligible ({ineligibleCount})
@@ -309,21 +311,21 @@ export default function EvaluationTestBench({ lang = "en" }) {
           return (
             <div
               key={policy.id}
-              className={`bg-white rounded-2xl border transition-all shadow-sm overflow-hidden ${
+              className={`bg-white rounded-[24px] border transition-all shadow-sm overflow-hidden ${
                 isEligible
-                  ? "border-emerald-200 hover:border-emerald-300"
+                  ? "border-emerald-200/80 hover:border-emerald-300"
                   : isBorderline
-                  ? "border-amber-200 hover:border-amber-300"
-                  : "border-slate-200 opacity-90"
+                  ? "border-amber-200/80 hover:border-amber-300"
+                  : "border-[#E5E7EB] opacity-90"
               }`}
             >
               {/* Header Row */}
-              <div className="p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="p-5 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div className="flex-1">
-                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
                     {/* 3-State Triage Badge */}
                     <span
-                      className={`inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full border ${
+                      className={`inline-flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-full border ${
                         isEligible
                           ? "bg-emerald-50 text-emerald-800 border-emerald-300"
                           : isBorderline
@@ -337,7 +339,7 @@ export default function EvaluationTestBench({ lang = "en" }) {
                       {policy.triage_badge.label}
                     </span>
 
-                    <span className="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-medium capitalize">
+                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#F4F5F7] text-slate-700 font-medium capitalize">
                       {policy.policy_type ? policy.policy_type.replace(/_/g, " ") : "Concessional Loan"}
                     </span>
 
@@ -346,10 +348,10 @@ export default function EvaluationTestBench({ lang = "en" }) {
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-slate-900 leading-snug">
+                  <h3 className="text-lg font-bold text-[#111827] leading-snug">
                     {policy.name}
                   </h3>
-                  <p className="text-xs text-slate-600 mt-1 max-w-3xl">
+                  <p className="text-xs text-slate-600 mt-1 max-w-3xl leading-relaxed">
                     {policy.shortDesc || policy.description}
                   </p>
                 </div>
@@ -357,10 +359,10 @@ export default function EvaluationTestBench({ lang = "en" }) {
                 {/* Benefit Amount & Action */}
                 <div className="flex md:flex-col items-end justify-between w-full md:w-auto gap-2 border-t md:border-t-0 pt-3 md:pt-0">
                   <div className="text-right">
-                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                       Estimated Benefit:
                     </div>
-                    <div className="text-xl font-black text-indigo-700">
+                    <div className="text-2xl font-black text-[#FF6B3D]">
                       {policy.benefit_estimate?.formatted || "₹0"}
                     </div>
                     <div className="text-[11px] text-slate-500">
@@ -370,9 +372,9 @@ export default function EvaluationTestBench({ lang = "en" }) {
 
                   <button
                     onClick={() => setExpandedSchemeId(isExpanded ? null : policy.id)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold transition-colors"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#F4F5F7] hover:bg-[#E5E7EB] text-[#111827] text-xs font-bold transition-colors cursor-pointer border border-[#E5E7EB]"
                   >
-                    <BookOpen className="w-3.5 h-3.5" />
+                    <BookOpen className="w-3.5 h-3.5 text-[#FF6B3D]" />
                     {isExpanded ? "Hide Rule Audit" : "View Rule Clauses & Proofs"}
                   </button>
                 </div>

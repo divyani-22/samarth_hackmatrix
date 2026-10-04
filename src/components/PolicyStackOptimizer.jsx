@@ -122,15 +122,15 @@ export default function PolicyStackOptimizer({
   }, [layers]);
 
   return (
-    <div className="w-full bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden mb-12">
-      {/* Hero Header */}
-      <div className="bg-gradient-to-br from-indigo-950 via-slate-900 to-indigo-900 text-white p-6 md:p-8 relative overflow-hidden">
-        <div className="absolute right-0 top-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+    <div className="w-full bg-white rounded-[32px] border border-[#E5E7EB] shadow-sm overflow-hidden mb-12">
+      {/* Hero Header Bento Card */}
+      <div className="bg-[#181C24] text-white p-6 md:p-8 relative overflow-hidden">
+        <div className="absolute right-0 top-0 w-96 h-96 bg-[#FF6B3D]/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-400/20 text-indigo-300 text-xs font-bold uppercase tracking-wider mb-3 border border-indigo-400/30">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FF6B3D]/20 text-[#FF6B3D] text-xs font-bold uppercase tracking-wider mb-3 border border-[#FF6B3D]/30">
+              <Sparkles className="w-3.5 h-3.5" />
               <span>Star Innovation: Policy Convergence Engine</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
@@ -142,11 +142,11 @@ export default function PolicyStackOptimizer({
           </div>
 
           {/* Value Multiplier Badge */}
-          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 text-center min-w-[200px] flex-shrink-0">
-            <div className="text-[11px] font-bold text-indigo-200 uppercase tracking-wider mb-1">
+          <div className="bg-white/10 backdrop-blur-md border border-white/15 rounded-[24px] p-5 text-center min-w-[200px] flex-shrink-0">
+            <div className="text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
               Government Value Multiplier
             </div>
-            <div className="text-3xl md:text-4xl font-black text-amber-300">
+            <div className="text-3xl md:text-4xl font-black text-[#FF6B3D]">
               {calculations.multiplier}x
             </div>
             <div className="text-[11px] text-slate-300 mt-1">
@@ -157,7 +157,7 @@ export default function PolicyStackOptimizer({
 
         {/* Dynamic Financial Multiplier Bar */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-6 border-t border-white/10">
-          <div className="bg-white/5 rounded-xl p-3 border border-white/10">
+          <div className="bg-white/5 rounded-2xl p-3.5 border border-white/10">
             <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
               Direct Non-Repayable Grants
             </div>
@@ -166,7 +166,7 @@ export default function PolicyStackOptimizer({
             </div>
           </div>
 
-          <div className="bg-white/5 rounded-xl p-3 border border-white/10">
+          <div className="bg-white/5 rounded-2xl p-3.5 border border-white/10">
             <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
               Collateral-Free Bank Credit
             </div>
@@ -175,7 +175,7 @@ export default function PolicyStackOptimizer({
             </div>
           </div>
 
-          <div className="bg-white/5 rounded-xl p-3 border border-white/10">
+          <div className="bg-white/5 rounded-2xl p-3.5 border border-white/10">
             <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
               Annual Recurring Savings
             </div>
@@ -184,8 +184,8 @@ export default function PolicyStackOptimizer({
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-amber-500/20 to-emerald-500/20 rounded-xl p-3 border border-amber-400/30">
-            <div className="text-[10px] text-amber-200 font-bold uppercase tracking-wider">
+          <div className="bg-[#FF6B3D]/15 rounded-2xl p-3.5 border border-[#FF6B3D]/30">
+            <div className="text-[10px] text-[#FF6B3D] font-bold uppercase tracking-wider">
               Total 3-Year Package Value
             </div>
             <div className="text-lg font-black text-white mt-0.5">
@@ -196,25 +196,25 @@ export default function PolicyStackOptimizer({
       </div>
 
       {/* Statutory Anti-Conflict Shield Banner */}
-      <div className="bg-emerald-50 px-6 py-3 border-b border-emerald-200 flex flex-wrap items-center justify-between gap-3 text-xs text-emerald-950 font-medium">
+      <div className="bg-emerald-50/80 px-6 py-3 border-b border-emerald-100 flex flex-wrap items-center justify-between gap-3 text-xs text-emerald-950 font-medium">
         <div className="flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-emerald-700 flex-shrink-0" />
           <span>
             <strong>Statutory Convergence Verification:</strong> All {calculations.activeCount} active policy layers are legally harmonious under MoF, KVIC & CBDT inter-ministerial circulars.
           </span>
         </div>
-        <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-200 text-emerald-900">
+        <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-200/80 text-emerald-900">
           0 Conflict Violations
         </span>
       </div>
 
       {/* Interactive Layer Toggles */}
-      <div className="p-6 md:p-8">
+      <div className="p-6 md:p-8 bg-[#F8F9FA]/40">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-base font-bold text-slate-900">
+          <h3 className="text-base font-bold text-[#111827]">
             Interactive Policy Convergence Layers (Click to toggle in/out of bundle):
           </h3>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white border border-[#E5E7EB] text-slate-600">
             {calculations.activeCount} of {layers.length} Layers Active
           </span>
         </div>
@@ -226,23 +226,23 @@ export default function PolicyStackOptimizer({
               <div
                 key={layer.id}
                 onClick={() => toggleLayer(layer.id)}
-                className={`p-4 rounded-2xl border transition-all cursor-pointer select-none flex flex-col justify-between ${
+                className={`p-5 rounded-[24px] border transition-all cursor-pointer select-none flex flex-col justify-between ${
                   layer.enabled
-                    ? "bg-slate-50/80 border-indigo-300 shadow-sm hover:border-indigo-400"
-                    : "bg-white border-slate-200 opacity-60 hover:opacity-80"
+                    ? "bg-white border-[#FF6B3D]/40 shadow-sm ring-1 ring-[#FF6B3D]/20"
+                    : "bg-white/60 border-[#E5E7EB] opacity-60 hover:opacity-90"
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between gap-3 mb-2">
                     <div className="flex items-center gap-2.5">
-                      <div className={`p-2 rounded-xl ${layer.iconColor}`}>
+                      <div className={`p-2.5 rounded-2xl ${layer.iconColor}`}>
                         <Icon className="w-4 h-4" />
                       </div>
                       <div>
                         <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
                           {layer.category}
                         </div>
-                        <h4 className="text-sm font-bold text-slate-900 leading-snug">
+                        <h4 className="text-sm font-bold text-[#111827] leading-snug">
                           {layer.title}
                         </h4>
                       </div>
@@ -251,7 +251,7 @@ export default function PolicyStackOptimizer({
                     {/* Custom Toggle Switch */}
                     <div
                       className={`w-11 h-6 flex items-center rounded-full p-1 duration-300 cursor-pointer ${
-                        layer.enabled ? "bg-indigo-600 justify-end" : "bg-slate-300 justify-start"
+                        layer.enabled ? "bg-[#FF6B3D] justify-end" : "bg-slate-300 justify-start"
                       }`}
                     >
                       <div className="bg-white w-4 h-4 rounded-full shadow-md transform" />
@@ -263,11 +263,11 @@ export default function PolicyStackOptimizer({
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px]">
+                <div className="pt-3 border-t border-[#E5E7EB] flex items-center justify-between text-[11px]">
                   <span className="text-slate-500">
-                    Statutory Rule: <strong className="text-slate-700">{layer.statutoryClause}</strong>
+                    Statutory Rule: <strong className="text-slate-800">{layer.statutoryClause}</strong>
                   </span>
-                  <span className="font-bold text-indigo-700">
+                  <span className="font-bold text-[#FF6B3D]">
                     {layer.baseBenefitAmount > 0
                       ? `₹${layer.baseBenefitAmount.toLocaleString("en-IN")}`
                       : `+₹${layer.annualSavings.toLocaleString("en-IN")}/yr`}
@@ -279,14 +279,14 @@ export default function PolicyStackOptimizer({
         </div>
 
         {/* Action Callout */}
-        <div className="mt-6 p-4 rounded-2xl bg-indigo-50 border border-indigo-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-xs text-indigo-950">
-            <span className="font-bold">Next Convergence Step:</span> Ready to submit? You can download the unified composite application dossier that packages all {calculations.activeCount} layers for the bank.
+        <div className="mt-6 p-5 rounded-[24px] bg-white border border-[#E5E7EB] flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+          <div className="text-xs text-slate-700">
+            <span className="font-bold text-[#111827]">Next Convergence Step:</span> Ready to submit? You can download the unified composite application dossier that packages all {calculations.activeCount} layers for the bank.
           </div>
           <button
             type="button"
             onClick={() => onSelectPolicy && onSelectPolicy("stacked-bundle")}
-            className="btn-primary text-xs font-bold px-4 py-2 rounded-xl flex items-center gap-1.5 flex-shrink-0 shadow-sm"
+            className="rounded-full bg-[#FF6B3D] hover:bg-[#E05326] text-white text-xs font-bold px-6 py-2.5 flex items-center gap-2 flex-shrink-0 shadow-sm transition-all"
           >
             <span>Proceed with Stacked Bundle</span>
             <ArrowRight className="w-3.5 h-3.5" />

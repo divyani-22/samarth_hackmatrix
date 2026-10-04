@@ -262,26 +262,26 @@ export default function AIBusinessAnalyzer({ lang = "en", onSelectScheme }) {
   };
 
   return (
-    <div className="bg-surface-container-lowest border border-surface-container rounded-2xl p-6 sm:p-8 shadow-sm">
+    <div className="bg-white border border-[#E5E7EB] rounded-[32px] p-6 sm:p-8 shadow-sm mb-12">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-secondary/10 text-secondary text-xs font-bold rounded-full mb-2">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 bg-[#FF6B3D]/10 text-[#FF6B3D] text-xs font-bold rounded-full mb-2 border border-[#FF6B3D]/20">
             <Lightbulb size={14} /> {t.badge}
           </div>
-          <h2 className="text-2xl font-bold text-on-surface">{t.title}</h2>
-          <p className="text-sm text-on-surface-variant max-w-2xl">{t.desc}</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#111827]">{t.title}</h2>
+          <p className="text-sm text-slate-600 max-w-2xl mt-1 leading-relaxed">{t.desc}</p>
         </div>
       </div>
 
       {/* Input Box with Voice Support */}
-      <div className="relative mb-4">
+      <div className="relative mb-5">
         <textarea
           rows={3}
           value={ideaText}
           onChange={(e) => setIdeaText(e.target.value)}
           placeholder={t.placeholder}
-          className="w-full p-4 pr-12 rounded-xl bg-surface border border-outline-variant text-on-surface text-sm focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all placeholder:text-on-surface-variant/60"
+          className="w-full p-4 pr-12 rounded-[22px] bg-[#F8F9FA] border border-[#E5E7EB] text-[#111827] text-sm focus:outline-none focus:border-[#FF6B3D] focus:ring-2 focus:ring-[#FF6B3D]/20 transition-all placeholder:text-slate-400"
         />
         <div className="absolute right-3 top-3">
           <VoiceInputButton
@@ -297,11 +297,11 @@ export default function AIBusinessAnalyzer({ lang = "en", onSelectScheme }) {
 
       {/* Quick Test Samples (Essential for Demo) */}
       <div className="mb-6">
-        <div className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-2">
-          <Lightbulb size={14} className="text-amber-500" />
+        <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-500 mb-2.5">
+          <Lightbulb size={14} className="text-[#FF6B3D]" />
           <span>{t.quickTestLabel}</span>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {sampleIdeas.map((sample, idx) => (
             <button
               key={idx}
@@ -310,12 +310,12 @@ export default function AIBusinessAnalyzer({ lang = "en", onSelectScheme }) {
                 setIdeaText(sample.desc);
                 handleAnalyze(sample.desc);
               }}
-              className="text-left p-2.5 rounded-lg border border-surface-container bg-surface hover:bg-surface-container-high transition-all text-xs group cursor-pointer"
+              className="text-left p-3.5 rounded-[20px] border border-[#E5E7EB] bg-[#F8F9FA] hover:bg-white hover:border-[#FF6B3D]/40 transition-all text-xs group cursor-pointer shadow-none hover:shadow-sm"
             >
-              <div className="font-bold text-primary group-hover:text-secondary truncate">
+              <div className="font-bold text-[#111827] group-hover:text-[#FF6B3D] truncate">
                 {sample.title}
               </div>
-              <div className="text-[11px] text-on-surface-variant line-clamp-2 mt-0.5">
+              <div className="text-[11px] text-slate-500 line-clamp-2 mt-1 leading-relaxed">
                 {sample.desc}
               </div>
             </button>
@@ -329,7 +329,7 @@ export default function AIBusinessAnalyzer({ lang = "en", onSelectScheme }) {
           type="button"
           onClick={() => handleAnalyze()}
           disabled={isAnalyzing || !ideaText.trim()}
-          className="bg-primary hover:bg-primary/90 text-on-primary font-bold px-6 py-2.5 rounded-xl text-sm flex items-center gap-2 shadow-md transition-all disabled:opacity-50 cursor-pointer"
+          className="rounded-full bg-[#FF6B3D] hover:bg-[#E05326] text-white font-bold px-7 py-3 text-sm flex items-center gap-2 shadow-sm transition-all disabled:opacity-50 cursor-pointer"
         >
           {isAnalyzing ? (
             <>
@@ -346,7 +346,7 @@ export default function AIBusinessAnalyzer({ lang = "en", onSelectScheme }) {
       </div>
 
       {error && (
-        <div className="mt-4 p-3.5 bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium rounded-xl flex items-center gap-2">
+        <div className="mt-4 p-4 bg-rose-50 border border-rose-200 text-rose-700 text-xs font-medium rounded-2xl flex items-center gap-2">
           <AlertCircle size={16} className="shrink-0 text-rose-500" />
           <span>{error}</span>
         </div>
@@ -354,19 +354,19 @@ export default function AIBusinessAnalyzer({ lang = "en", onSelectScheme }) {
 
       {/* AI Analysis Results Card */}
       {analysisResult && (
-        <div className="mt-8 border border-secondary/30 bg-secondary/5 rounded-2xl p-6 animate-in slide-in-from-bottom-4 duration-300">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-4 border-b border-secondary/20 mb-4">
-            <div className="flex items-center gap-2">
-              <span className="w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center font-bold text-sm">
+        <div className="mt-8 border border-[#E5E7EB] bg-[#F8F9FA] rounded-[28px] p-6 animate-in slide-in-from-bottom-4 duration-300 shadow-sm">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-4 border-b border-[#E5E7EB] mb-4">
+            <div className="flex items-center gap-3">
+              <span className="w-9 h-9 rounded-full bg-[#FF6B3D] text-white flex items-center justify-center font-bold text-sm shadow-sm">
                 AI
               </span>
               <div>
-                <h3 className="font-bold text-base text-on-surface">
+                <h3 className="font-bold text-base text-[#111827]">
                   {t.resultHeader}
                 </h3>
-                <p className="text-xs text-on-surface-variant">
+                <p className="text-xs text-slate-500">
                   {t.sectorLabel}:{" "}
-                  <span className="font-semibold text-primary">
+                  <span className="font-semibold text-[#111827]">
                     {analysisResult.businessSector}
                   </span>{" "}
                   | {t.confidenceLabel}:{" "}
@@ -387,30 +387,30 @@ export default function AIBusinessAnalyzer({ lang = "en", onSelectScheme }) {
           </div>
 
           {/* Matched Scheme Highlight Banner */}
-          <div className="bg-surface border border-surface-container rounded-xl p-4 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm">
+          <div className="bg-white border border-[#E5E7EB] rounded-[22px] p-5 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-sm">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-secondary bg-secondary/10 px-2 py-0.5 rounded">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#FF6B3D] bg-[#FF6B3D]/10 px-2.5 py-0.5 rounded-full border border-[#FF6B3D]/20">
                 {t.recommendedBanner}
               </span>
-              <h4 className="text-lg font-bold text-primary mt-1">
+              <h4 className="text-lg font-bold text-[#111827] mt-1.5">
                 {analysisResult.scheme.name}
               </h4>
-              <p className="text-xs text-on-surface-variant mt-0.5">
+              <p className="text-xs text-slate-600 mt-0.5">
                 {analysisResult.scheme.shortDesc}
               </p>
 
-              <div className="flex flex-wrap gap-4 mt-2 text-xs font-semibold">
+              <div className="flex flex-wrap gap-4 mt-3 text-xs font-semibold">
                 <span className="text-slate-700">
                   {t.maxLoan}:{" "}
-                  <strong>{analysisResult.scheme.maxAmount}</strong>
+                  <strong className="text-[#111827]">{analysisResult.scheme.maxAmount}</strong>
                 </span>
-                <span className="text-blue-900">
+                <span className="text-slate-700">
                   {t.interest}:{" "}
-                  <strong>{analysisResult.scheme.interest}</strong>
+                  <strong className="text-[#FF6B3D]">{analysisResult.scheme.interest}</strong>
                 </span>
                 <span className="text-slate-700">
                   {t.gracePeriod}:{" "}
-                  <strong>
+                  <strong className="text-[#111827]">
                     {analysisResult.scheme.moratorium_period
                       ? `${analysisResult.scheme.moratorium_period} ${t.monthsUnit}`
                       : `3 ${t.monthsUnit}`}
@@ -422,33 +422,33 @@ export default function AIBusinessAnalyzer({ lang = "en", onSelectScheme }) {
             <button
               type="button"
               onClick={() => onSelectScheme(analysisResult.scheme)}
-              className="shrink-0 bg-secondary hover:bg-secondary-dim text-white text-xs font-bold px-4 py-2.5 rounded-lg flex items-center gap-1.5 shadow transition-all cursor-pointer"
+              className="shrink-0 rounded-full bg-[#FF6B3D] hover:bg-[#E05326] text-white text-xs font-bold px-5 py-2.5 flex items-center gap-1.5 shadow-sm transition-all cursor-pointer"
             >
               {t.viewDetails} <ChevronRight size={14} />
             </button>
           </div>
 
           {/* AI Fit Explanation */}
-          <div className="space-y-3 text-xs text-on-surface mb-4">
+          <div className="space-y-4 text-xs text-[#111827] mb-2">
             <div>
-              <strong className="text-primary block mb-1">
+              <strong className="text-[#111827] block mb-1.5 text-xs font-bold">
                 {t.whyFitsHeader}
               </strong>
-              <p className="leading-relaxed bg-white/80 p-3 rounded-lg border border-outline-variant/30 text-slate-700">
+              <p className="leading-relaxed bg-white p-4 rounded-2xl border border-[#E5E7EB] text-slate-700">
                 {analysisResult.whyThisFits}
               </p>
             </div>
 
             {/* Action Roadmap */}
             <div>
-              <strong className="text-primary block mb-1">
+              <strong className="text-[#111827] block mb-1.5 text-xs font-bold">
                 {t.roadmapHeader}
               </strong>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {analysisResult.actionPlan.map((step, sIdx) => (
                   <div
                     key={sIdx}
-                    className="bg-white/80 p-2.5 rounded-lg border border-outline-variant/30 flex items-start gap-2"
+                    className="bg-white p-3.5 rounded-2xl border border-[#E5E7EB] flex items-start gap-2.5 shadow-xs"
                   >
                     <CheckCircle2
                       size={16}
