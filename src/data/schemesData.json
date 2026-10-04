@@ -1,0 +1,261 @@
+[
+  {
+    "id": "pm-egp",
+    "name": "Prime Minister Employment Generation Programme (PMEGP)",
+    "category": "Employment",
+    "categoryKey": "employment",
+    "tagColor": "cat-blue",
+    "shortBenefit": "Up to ₹50 Lakhs project funding with 15% to 35% non-repayable capital subsidy.",
+    "benefitHighlight": "35% Capital Subsidy",
+    "maxBenefit": "₹50,00,000",
+    "interestRate": "Concessional Bank Rate",
+    "targetAudience": "Entrepreneurs, Unemployed Youth, SHGs, Artisans",
+    "stateScope": "All India",
+    "minAge": 18,
+    "maxAge": 65,
+    "eligibilityCriteria": [
+      "Any individual above 18 years of age.",
+      "At least VIII standard pass for projects costing above ₹10 Lakhs in manufacturing and ₹5 Lakhs in service sector.",
+      "New micro-enterprises only (existing units not eligible).",
+      "Special category beneficiaries (SC/ST/OBC/Women/Minority/NER) get up to 35% subsidy in rural areas."
+    ],
+    "documentsRequired": [
+      "Aadhaar Card & PAN Card",
+      "Project Report / Business Plan",
+      "Educational Qualification Certificate (8th / 10th pass)",
+      "Caste / Category Certificate (for special subsidy rate)",
+      "Rural Area Certificate (issued by Gram Panchayat / BDO)"
+    ],
+    "applicationProcess": "Submit online via KVIC e-Tracking portal or apply through designated District Industries Centre (DIC).",
+    "officialLink": "https://www.kviconline.gov.in/pmegpeportal/",
+    "department": "Ministry of Micro, Small and Medium Enterprises"
+  },
+  {
+    "id": "mahila-samriddhi",
+    "name": "Mahila Samriddhi Yojana (MSY)",
+    "category": "Women & Child",
+    "categoryKey": "women-child",
+    "tagColor": "cat-rose",
+    "shortBenefit": "Subsidized micro-credit up to ₹1,40,000 at a deeply discounted 4% p.a. interest rate.",
+    "benefitHighlight": "4% Low Interest Rate",
+    "maxBenefit": "₹1,40,000",
+    "interestRate": "4.0% p.a.",
+    "targetAudience": "Women Entrepreneurs & Self-Help Group Members",
+    "stateScope": "All India",
+    "minAge": 18,
+    "maxAge": 60,
+    "eligibilityCriteria": [
+      "Targeted exclusively at women entrepreneurs and women SHGs.",
+      "Annual family income must be below ₹3,00,000 for urban and rural applicants.",
+      "Priority given to backward classes, artisans, and single women breadwinners.",
+      "Rebate of 0.5% for timely and prompt repayment."
+    ],
+    "documentsRequired": [
+      "Aadhaar Card",
+      "Income Certificate issued by Revenue Authority",
+      "Bank Account Details (Passbook copy)",
+      "Self-declaration / Proof of business activity"
+    ],
+    "applicationProcess": "Channelized through State Channelizing Agencies (SCAs), Regional Rural Banks, and Mahila Vikas Mandals.",
+    "officialLink": "https://nbcfdc.gov.in/",
+    "department": "National Backward Classes Finance & Development Corporation"
+  },
+  {
+    "id": "pm-kisan",
+    "name": "PM Kisan Samman Nidhi Yojana",
+    "category": "Agriculture",
+    "categoryKey": "agriculture",
+    "tagColor": "cat-mint",
+    "shortBenefit": "Direct income support of ₹6,000 per year transferred into farmer bank accounts in 3 equal tranches.",
+    "benefitHighlight": "₹6,000 / Year Direct Grant",
+    "maxBenefit": "₹6,000 / Year",
+    "interestRate": "100% Grant",
+    "targetAudience": "Small & Marginal Farmers",
+    "stateScope": "All India",
+    "minAge": 18,
+    "maxAge": 75,
+    "eligibilityCriteria": [
+      "All landholding farmer families having cultivable land in their names.",
+      "Valid Aadhaar linked to a DBT-enabled bank account.",
+      "Institutional landholders and high income-tax payers are excluded."
+    ],
+    "documentsRequired": [
+      "Aadhaar Card with biometric e-KYC",
+      "Land Ownership Documents (Khata / 7/12 extract / Patta)",
+      "DBT-linked Bank Passbook"
+    ],
+    "applicationProcess": "Self-registration available on PM-Kisan Portal or via local CSC / Village Patwari.",
+    "officialLink": "https://pmkisan.gov.in/",
+    "department": "Ministry of Agriculture & Farmers Welfare"
+  },
+  {
+    "id": "ayushman-bharat",
+    "name": "Ayushman Bharat PM-JAY Health Coverage",
+    "category": "Health",
+    "categoryKey": "health",
+    "tagColor": "cat-lavender",
+    "shortBenefit": "₹5 Lakhs cashless health insurance cover per family per year across 27,000+ empaneled hospitals.",
+    "benefitHighlight": "₹5 Lakhs Cashless Health Cover",
+    "maxBenefit": "₹5,00,000 / Year",
+    "interestRate": "100% Cashless",
+    "targetAudience": "Low-Income Families, Senior Citizens (70+ Universal)",
+    "stateScope": "All India",
+    "minAge": 0,
+    "maxAge": 100,
+    "eligibilityCriteria": [
+      "Families listed under SECC database or eligible state NFSA ration cards.",
+      "Universal expansion: All senior citizens aged 70+ now eligible regardless of family income.",
+      "Covers pre-existing conditions from Day 1 including secondary and tertiary hospitalization."
+    ],
+    "documentsRequired": [
+      "Aadhaar Card",
+      "Ration Card or Ayushman HHID Number",
+      "Age proof for Senior Citizen 70+ category"
+    ],
+    "applicationProcess": "Generate Ayushman Card instantly at any Empaneled Hospital or Common Service Center (CSC).",
+    "officialLink": "https://nha.gov.in/PM-JAY",
+    "department": "National Health Authority"
+  },
+  {
+    "id": "pm-svanidhi",
+    "name": "PM SVANidhi Micro-Credit Scheme",
+    "category": "Employment",
+    "categoryKey": "employment",
+    "tagColor": "cat-blue",
+    "shortBenefit": "Collateral-free working capital loan starting at ₹10,000 up to ₹50,000 with 7% interest subsidy.",
+    "benefitHighlight": "7% Interest Subsidy + Cashback",
+    "maxBenefit": "₹50,000",
+    "interestRate": "Subsidized (7% rebate)",
+    "targetAudience": "Street Vendors, Hawkers, Micro Urban Traders",
+    "stateScope": "All India",
+    "minAge": 18,
+    "maxAge": 65,
+    "eligibilityCriteria": [
+      "Urban and peri-urban street vendors possessing Certificate of Vending or Letter of Recommendation.",
+      "First tranche of ₹10,000; second tranche of ₹20,000 upon timely repayment; third tranche up to ₹50,000.",
+      "Digital transaction cashback of up to ₹100 per month."
+    ],
+    "documentsRequired": [
+      "Aadhaar Card & Mobile Number",
+      "Vending Certificate or Local Urban Body (ULB) survey slip",
+      "Bank Savings Account Passbook"
+    ],
+    "applicationProcess": "Apply on the PM SVANidhi portal or visit any Scheduled Commercial Bank or CSC center.",
+    "officialLink": "https://pmsvanidhi.mohua.gov.in/",
+    "department": "Ministry of Housing and Urban Affairs"
+  },
+  {
+    "id": "pm-awas-yojana",
+    "name": "Pradhan Mantri Awas Yojana (PMAY - Urban & Gramin)",
+    "category": "Housing",
+    "categoryKey": "housing",
+    "tagColor": "cat-amber",
+    "shortBenefit": "Direct financial assistance and interest subsidy up to ₹2.67 Lakhs for pucca house construction.",
+    "benefitHighlight": "Up to ₹2.67 Lakhs Subsidy",
+    "maxBenefit": "₹2,67,000",
+    "interestRate": "Credit-Linked Interest Subsidy",
+    "targetAudience": "Homeless, EWS, LIG & Rural Families",
+    "stateScope": "All India",
+    "minAge": 21,
+    "maxAge": 70,
+    "eligibilityCriteria": [
+      "Beneficiary family should not own a pucca house anywhere in India.",
+      "Income criteria: EWS (up to ₹3 Lakhs), LIG (₹3 to ₹6 Lakhs per year).",
+      "Female head of household must be co-owner in property title."
+    ],
+    "documentsRequired": [
+      "Aadhaar Card of all family members",
+      "Income Proof / BPL Ration Card",
+      "Land ownership title or Patta allotment",
+      "Bank Account details"
+    ],
+    "applicationProcess": "Apply online at PMAY MIS or submit physical application to Gram Panchayat / Municipal Ward.",
+    "officialLink": "https://pmaymis.gov.in/",
+    "department": "Ministry of Housing & Urban Affairs / Rural Development"
+  },
+  {
+    "id": "post-matric-scholarship",
+    "name": "Post-Matric Scholarship Scheme for Higher Education",
+    "category": "Education",
+    "categoryKey": "education",
+    "tagColor": "cat-blue",
+    "shortBenefit": "100% compulsory non-refundable fees reimbursement plus monthly maintenance stipend up to ₹13,500/yr.",
+    "benefitHighlight": "Full Tuition + Maintenance Allowance",
+    "maxBenefit": "₹1,50,000 / Year",
+    "interestRate": "100% Free Grant",
+    "targetAudience": "College & University Students (SC/ST/OBC/EWS)",
+    "stateScope": "All India",
+    "minAge": 15,
+    "maxAge": 35,
+    "eligibilityCriteria": [
+      "Students enrolled in post-matriculation / post-secondary recognized courses.",
+      "Annual parental/guardian income must not exceed ₹2.50 Lakhs.",
+      "Direct DBT transfer of course fee and monthly living allowance."
+    ],
+    "documentsRequired": [
+      "Student Aadhaar Card & College ID",
+      "Caste / Category Certificate",
+      "Income Certificate of parents",
+      "Previous Year Marksheet & Fee Receipt"
+    ],
+    "applicationProcess": "Apply through National Scholarship Portal (NSP) or respective State Scholarship Portal.",
+    "officialLink": "https://scholarships.gov.in/",
+    "department": "Ministry of Social Justice and Empowerment"
+  },
+  {
+    "id": "indira-gandhi-pension",
+    "name": "National Social Assistance Senior Pension (IGNOAPS)",
+    "category": "Senior Citizens",
+    "categoryKey": "senior-citizens",
+    "tagColor": "cat-lavender",
+    "shortBenefit": "Monthly direct social security pension with additional state top-up for elderly citizens.",
+    "benefitHighlight": "Monthly Direct Security Pension",
+    "maxBenefit": "₹1,000 - ₹2,500 / Month",
+    "interestRate": "Direct Social Transfer",
+    "targetAudience": "Senior Citizens aged 60+ living below poverty line",
+    "stateScope": "All India",
+    "minAge": 60,
+    "maxAge": 100,
+    "eligibilityCriteria": [
+      "Person must be 60 years or above.",
+      "Applicant must belong to a household living below the poverty line (BPL).",
+      "Increased financial allocation for super-seniors aged 80 and above."
+    ],
+    "documentsRequired": [
+      "Aadhaar Card / Age Verification Certificate",
+      "BPL Ration Card",
+      "Bank / Post Office Account details"
+    ],
+    "applicationProcess": "Apply via District Social Welfare Office, CSC Portal, or Umang Mobile App.",
+    "officialLink": "https://nsap.nic.in/",
+    "department": "Ministry of Rural Development"
+  },
+  {
+    "id": "pm-vishwakarma",
+    "name": "PM Vishwakarma Artisan & Craftsman Scheme",
+    "category": "Employment",
+    "categoryKey": "employment",
+    "tagColor": "cat-mint",
+    "shortBenefit": "₹15,000 modern toolkit grant + collateral-free loans up to ₹3,00,000 at 5% interest rate.",
+    "benefitHighlight": "₹15,000 Toolkit + ₹3L Credit @ 5%",
+    "maxBenefit": "₹3,15,000",
+    "interestRate": "5.0% Subsidized",
+    "targetAudience": "Traditional Artisans (Carpenters, Blacksmiths, Potters, Weavers, etc.)",
+    "stateScope": "All India",
+    "minAge": 18,
+    "maxAge": 65,
+    "eligibilityCriteria": [
+      "Traditional artisans engaged in any of the 18 recognized family-based trades.",
+      "Includes 5-7 days basic skill training with ₹500/day stipend.",
+      "First loan tranche ₹1 Lakh, second loan tranche ₹2 Lakhs with zero collateral."
+    ],
+    "documentsRequired": [
+      "Aadhaar Card & Active Mobile Number",
+      "Bank Account details",
+      "Proof of trade activity / Gram Panchayat verification"
+    ],
+    "applicationProcess": "Register at nearest CSC center on PM Vishwakarma portal with biometric verification.",
+    "officialLink": "https://pmvishwakarma.gov.in/",
+    "department": "Ministry of MSME & Ministry of Skill Development"
+  }
+]
