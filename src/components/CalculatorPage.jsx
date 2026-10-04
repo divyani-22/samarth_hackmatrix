@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Calculator, Sparkles, TrendingUp, HelpCircle, ShieldCheck } from "lucide-react";
+import { uiTranslations } from "../data/uiTranslations";
 
 export default function CalculatorPage({ lang = "en" }) {
   const [loanAmount, setLoanAmount] = useState(500000);
   const [interestRate, setInterestRate] = useState(5.0);
   const [tenureYears, setTenureYears] = useState(5);
   const [moratorium, setMoratorium] = useState(6);
+
+  const t = uiTranslations[lang]?.calculator || uiTranslations.en.calculator;
 
   const p = Number(loanAmount);
   const r = Number(interestRate) / 12 / 100;
@@ -38,10 +41,10 @@ export default function CalculatorPage({ lang = "en" }) {
             <span>Statutory Concessional Rates</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-[#111111] font-['Urbanist',sans-serif]">
-            Loan & Concessional Subsidy Calculator
+            {t.title}
           </h1>
           <p className="text-xs sm:text-sm text-neutral-500 max-w-lg mx-auto">
-            Calculate accurate monthly EMIs incorporating government interest subventions, capital subsidies, and moratorium grace periods.
+            {t.subtitle}
           </p>
         </div>
 
@@ -55,7 +58,7 @@ export default function CalculatorPage({ lang = "en" }) {
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <label className="text-xs font-bold uppercase tracking-wider text-neutral-500">
-                  Loan Amount Required
+                  {t.loanAmount}
                 </label>
                 <span className="text-xl font-black text-[#111111] bg-neutral-100 px-3.5 py-1 rounded-xl">
                   {formatCurrency(loanAmount)}
@@ -76,7 +79,7 @@ export default function CalculatorPage({ lang = "en" }) {
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <label className="text-xs font-bold uppercase tracking-wider text-neutral-500">
-                  Concessional Interest Rate (p.a.)
+                  {t.interestRate}
                 </label>
                 <span className="text-xl font-black text-[#FF6B3D] bg-orange-50 px-3.5 py-1 rounded-xl">
                   {interestRate}%
@@ -102,10 +105,10 @@ export default function CalculatorPage({ lang = "en" }) {
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <label className="text-xs font-bold uppercase tracking-wider text-neutral-500">
-                  Total Loan Tenure
+                  {t.tenure}
                 </label>
                 <span className="text-xl font-black text-[#111111] bg-neutral-100 px-3.5 py-1 rounded-xl">
-                  {tenureYears} Years
+                  {tenureYears} {lang === "mr" ? "वर्षे" : lang === "hi" ? "वर्ष" : "Years"}
                 </span>
               </div>
               <input
@@ -123,10 +126,10 @@ export default function CalculatorPage({ lang = "en" }) {
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <label className="text-xs font-bold uppercase tracking-wider text-neutral-500">
-                  Moratorium (Grace Period)
+                  {t.moratorium}
                 </label>
                 <span className="text-sm font-bold text-neutral-800 bg-neutral-100 px-3 py-1 rounded-xl">
-                  {moratorium} Months
+                  {moratorium} {lang === "mr" ? "महिने" : lang === "hi" ? "माह" : "Months"}
                 </span>
               </div>
               <input
@@ -147,34 +150,34 @@ export default function CalculatorPage({ lang = "en" }) {
             <div className="space-y-4">
               <div className="flex items-center gap-2 text-[#FF6B3D] text-xs font-bold">
                 <Calculator size={16} />
-                <span>Monthly Repayment Summary</span>
+                <span>{lang === "mr" ? "मासिक परतफेड सारांश" : lang === "hi" ? "मासिक पुनर्भुगतान सारांश" : "Monthly Repayment Summary"}</span>
               </div>
 
               <div>
-                <span className="text-xs text-neutral-400">Estimated Monthly EMI</span>
+                <span className="text-xs text-neutral-400">{t.monthlyEmi}</span>
                 <div className="text-4xl sm:text-5xl font-black text-white font-['Urbanist',sans-serif] mt-1">
                   {formatCurrency(emi)}
                 </div>
                 <span className="text-[11px] text-[#22C55E] font-semibold mt-1 block">
-                  ✓ After {moratorium} months interest moratorium
+                  ✓ {lang === "mr" ? `${moratorium} महिने मुदत सवलतीनंतर` : lang === "hi" ? `${moratorium} माह मोरेटोरियम के बाद` : `After ${moratorium} months interest moratorium`}
                 </span>
               </div>
 
               <div className="space-y-3 pt-4 border-t border-white/10 text-xs text-neutral-300">
                 <div className="flex justify-between">
-                  <span>Total Repayment Amount:</span>
+                  <span>{t.effectivePrincipal || "Total Repayment"}:</span>
                   <span className="font-bold text-white">
                     {formatCurrency(emi * emiMonths)}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Estimated Total Interest:</span>
+                  <span>{t.totalInterest || "Total Interest"}:</span>
                   <span className="font-bold text-[#FF6B3D]">
                     {formatCurrency(Math.max(0, emi * emiMonths - p))}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Effective Subsidy Value:</span>
+                  <span>{t.totalGrant || "Effective Subsidy"}:</span>
                   <span className="font-bold text-[#22C55E]">
                     {formatCurrency(p * 0.35)} (up to 35%)
                   </span>
@@ -183,7 +186,7 @@ export default function CalculatorPage({ lang = "en" }) {
             </div>
 
             <div className="p-4 rounded-2xl bg-[#1E1E1E] border border-white/10 text-[11px] text-neutral-400 leading-relaxed">
-              💡 Government schemes waive third-party mortgage through CGTMSE and offer 6-12 months moratorium where principal payments are deferred during project setup.
+              💡 {lang === "mr" ? "शासकीय योजनांमध्ये CGTMSE द्वारे विनातारण हमी आणि 6-12 महिन्यांची मुदत सवलत दिली जाते." : lang === "hi" ? "सरकारी योजनाओं में CGTMSE द्वारा बिना गारंटी ऋण और 6-12 महीने का मोरेटोरियम दिया जाता है।" : "Government schemes waive third-party mortgage through CGTMSE and offer 6-12 months moratorium where principal payments are deferred during project setup."}
             </div>
           </div>
 
@@ -193,3 +196,4 @@ export default function CalculatorPage({ lang = "en" }) {
     </div>
   );
 }
+

@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Sparkles, Shield, Zap, TrendingUp, Layers, CheckCircle2 } from "lucide-react";
+import { uiTranslations } from "../data/uiTranslations";
 
-export default function WhySamarthBento() {
+export default function WhySamarthBento({ lang = "en" }) {
   const [hasAnimated, setHasAnimated] = useState(false);
+  const t = uiTranslations[lang]?.whySamarth || uiTranslations.en.whySamarth;
 
   useEffect(() => {
     setHasAnimated(true);
   }, []);
-
-  const statsMilestones = [
-    { value: "500+", label: "Schemes Listed" },
-    { value: "28", label: "States & UTs Covered" },
-    { value: "3+", label: "Official Languages" },
-    { value: "100%", label: "Free Forever" },
-  ];
 
   return (
     <section className="w-full bg-[#F2F2F2] py-20 px-4 sm:px-6 lg:px-8 text-[#111111] border-t border-[#E5E5E5]/60">
@@ -23,17 +18,14 @@ export default function WhySamarthBento() {
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#E5E5E5] text-xs font-bold text-neutral-600 shadow-xs">
             <Sparkles size={13} className="text-[#FF6B3D]" />
-            <span>Why Citizens Choose Samarth</span>
+            <span>{t.title}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#111111] font-['Urbanist',sans-serif]">
-            Key advantages of our platform
+            {t.subtitle}
           </h2>
-          <p className="text-sm sm:text-base text-neutral-500 font-normal">
-            Eliminating bureaucratic friction through AI-powered statutory matching and transparent verification.
-          </p>
         </div>
 
-        {/* 4 Bento Advantage Cards Grid (Directly mirroring the reference screenshot) */}
+        {/* 4 Bento Advantage Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           
           {/* Card 1: Dark Bento Card */}
@@ -43,16 +35,18 @@ export default function WhySamarthBento() {
                 <Zap size={16} className="text-[#FF6B3D]" />
               </div>
               <p className="text-xs sm:text-sm font-medium text-neutral-300 leading-relaxed">
-                Increase the efficiency of scheme decision-making and statutory matching by...
+                {t.stat1Desc}
               </p>
             </div>
             <div>
               <div className="text-5xl sm:text-6xl font-black tracking-tight text-white font-['Urbanist',sans-serif]">
-                90%
+                {t.stat1Number}
               </div>
+              <div className="text-xs font-bold text-[#FF6B3D] mt-1">{t.stat1Title}</div>
             </div>
           </div>
 
+          {/* Card 2: White Bento Card */}
           {/* Card 2: White Bento Card */}
           <div className="bento-card bg-white text-[#111111] p-8 rounded-[32px] border border-[#E5E5E5] shadow-bento-soft flex flex-col justify-between h-[280px] sm:h-[320px] transition-all hover:scale-[1.02]">
             <div className="space-y-2">
@@ -60,13 +54,14 @@ export default function WhySamarthBento() {
                 <TrendingUp size={16} className="text-neutral-800" />
               </div>
               <p className="text-xs sm:text-sm font-medium text-neutral-600 leading-relaxed">
-                Faster processing and verification of large amounts of scheme rules and data...
+                {t.stat2Desc}
               </p>
             </div>
             <div>
               <div className="text-5xl sm:text-6xl font-black tracking-tight text-[#111111] font-['Urbanist',sans-serif]">
-                55%
+                {t.stat2Number}
               </div>
+              <div className="text-xs font-bold text-neutral-700 mt-1">{t.stat2Title}</div>
             </div>
           </div>
 
@@ -77,13 +72,14 @@ export default function WhySamarthBento() {
                 <Layers size={16} className="text-white" />
               </div>
               <p className="text-xs sm:text-sm font-medium text-white/95 leading-relaxed">
-                Reduced application rejection rates due to verified document gap analysis...
+                {t.stat3Desc}
               </p>
             </div>
             <div>
               <div className="text-5xl sm:text-6xl font-black tracking-tight text-white font-['Urbanist',sans-serif]">
-                30%
+                {t.stat3Number}
               </div>
+              <div className="text-xs font-bold text-white/90 mt-1">{t.stat3Title}</div>
             </div>
           </div>
 
@@ -94,32 +90,17 @@ export default function WhySamarthBento() {
                 <Shield size={16} />
               </div>
               <p className="text-xs sm:text-sm font-medium text-neutral-600 leading-relaxed">
-                Confidentiality and statutory compliance verified against official gazette standards...
+                {t.stat4Desc}
               </p>
             </div>
             <div>
               <div className="text-5xl sm:text-6xl font-black tracking-tight text-[#111111] font-['Urbanist',sans-serif]">
-                100%
+                {t.stat4Number}
               </div>
+              <div className="text-xs font-bold text-[#22C55E] mt-1">{t.stat4Title}</div>
             </div>
           </div>
 
-        </div>
-
-        {/* Supporting Milestone Stats Banner */}
-        <div className="bg-white rounded-[28px] border border-[#E5E5E5] p-6 sm:p-8 shadow-xs">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-neutral-100">
-            {statsMilestones.map((item, idx) => (
-              <div key={item.label} className={idx > 0 ? "pt-4 md:pt-0" : ""}>
-                <div className="text-3xl sm:text-4xl font-black text-[#111111] font-['Urbanist',sans-serif]">
-                  {item.value}
-                </div>
-                <div className="text-xs sm:text-sm font-semibold text-neutral-500 mt-1">
-                  {item.label}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
       </div>

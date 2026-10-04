@@ -1,8 +1,11 @@
 import React from "react";
 import { Sparkles, ArrowRight, Mail, Shield } from "lucide-react";
 import FinanceLogo from "./FinanceLogo";
+import { uiTranslations } from "../data/uiTranslations";
 
-export default function FooterBento({ onGetStarted }) {
+export default function FooterBento({ onGetStarted, lang = "en" }) {
+  const t = uiTranslations[lang]?.footer || uiTranslations.en.footer;
+
   return (
     <footer className="w-full bg-[#111111] text-white pt-16 pb-12 px-4 sm:px-6 lg:px-8 border-t border-white/10">
       <div className="max-w-7xl mx-auto space-y-6">
@@ -18,10 +21,10 @@ export default function FooterBento({ onGetStarted }) {
                 <span className="text-white font-bold">Samarth Welfare AI</span>
               </div>
               <h3 className="text-3xl sm:text-4xl font-black text-white font-['Urbanist',sans-serif]">
-                Get started!
+                {t.getStarted}
               </h3>
               <p className="text-xs text-neutral-400 mt-1">
-                Join thousands of citizens claiming verified financial assistance.
+                {t.getStartedSub}
               </p>
             </div>
 
@@ -30,7 +33,7 @@ export default function FooterBento({ onGetStarted }) {
                 onClick={onGetStarted}
                 className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#FF6B3D] hover:bg-[#ff5722] text-white text-sm font-bold shadow-orange-glow transition-all duration-300 hover:scale-[1.02] cursor-pointer text-center"
               >
-                Start for free
+                {t.startForFree}
               </button>
             </div>
           </div>
@@ -41,29 +44,29 @@ export default function FooterBento({ onGetStarted }) {
             {/* Card 2: Support Card (span 8) */}
             <div className="sm:col-span-8 bento-card bg-[#1E1E1E] p-7 rounded-[32px] border border-white/10 shadow-bento-dark flex flex-col justify-between">
               <div>
-                <h4 className="text-sm font-bold text-white mb-2">Support</h4>
+                <h4 className="text-sm font-bold text-white mb-2">{t.support}</h4>
                 <p className="text-xs text-neutral-400 leading-relaxed">
-                  Have a question? <span className="text-white font-medium">Get in touch</span> or check out our Help Center.
+                  {t.supportDesc}
                 </p>
                 <div className="mt-3 flex items-center gap-2 text-xs text-neutral-300">
                   <Mail size={13} className="text-[#FF6B3D]" />
-                  <span>help@samarth-welfare.gov.in</span>
+                  <span>{t.helpEmail}</span>
                 </div>
               </div>
 
               {/* Sub-links row */}
               <div className="flex flex-wrap items-center gap-4 pt-4 mt-4 border-t border-white/5 text-[11px] text-neutral-400">
-                <a href="#explore-schemes" className="hover:text-white transition-colors">Schemes</a>
-                <a href="#eligibility" className="hover:text-white transition-colors">Eligibility</a>
-                <a href="#how-it-works" className="hover:text-white transition-colors">How it works</a>
-                <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
+                <a href="#explore-schemes" className="hover:text-white transition-colors">{t.schemes}</a>
+                <a href="#eligibility" className="hover:text-white transition-colors">{t.eligibility}</a>
+                <a href="#how-it-works" className="hover:text-white transition-colors">{t.howItWorks}</a>
+                <a href="#faq" className="hover:text-white transition-colors">{t.faq}</a>
               </div>
             </div>
 
             {/* Card 3: Social Card (span 4) */}
             <div className="sm:col-span-4 bento-card bg-[#1E1E1E] p-7 rounded-[32px] border border-white/10 shadow-bento-dark flex flex-col justify-between">
               <div>
-                <h4 className="text-sm font-bold text-white mb-2">Social</h4>
+                <h4 className="text-sm font-bold text-white mb-2">{t.social}</h4>
                 <p className="text-xs text-neutral-400">Follow our national outreach updates.</p>
               </div>
 
@@ -114,8 +117,8 @@ export default function FooterBento({ onGetStarted }) {
             <span>© 2026 Samarth National Welfare Infrastructure. Government Open Data Compliant.</span>
           </div>
           <div className="flex items-center gap-4">
-            <a href="#" className="hover:text-neutral-300 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-neutral-300 transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-neutral-300 transition-colors">{t.privacyPolicy}</a>
+            <a href="#" className="hover:text-neutral-300 transition-colors">{t.terms}</a>
             <a href="#" className="hover:text-neutral-300 transition-colors">Security Audit</a>
           </div>
         </div>
@@ -124,3 +127,4 @@ export default function FooterBento({ onGetStarted }) {
     </footer>
   );
 }
+

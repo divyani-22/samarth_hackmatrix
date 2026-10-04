@@ -15,10 +15,13 @@ import {
   LogOut
 } from "lucide-react";
 import FinanceLogo from "../components/FinanceLogo";
+import { uiTranslations } from "../data/uiTranslations";
 
 export default function SignInPage({ lang = "en" }) {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const t = uiTranslations[lang]?.auth || uiTranslations.en.auth;
 
   // Auth Mode: "email" (Gmail) vs "phone" (Mobile OTP)
   const [authMethod, setAuthMethod] = useState("email"); // "email" | "phone"
@@ -59,11 +62,11 @@ export default function SignInPage({ lang = "en" }) {
 
   const handleSendOtp = () => {
     if (!fullName.trim()) {
-      setErrorMsg("Please enter your full name first.");
+      setErrorMsg(lang === "mr" ? "कृपया आधी आपले पूर्ण नाव प्रविष्ट करा." : lang === "hi" ? "कृपया पहले अपना पूरा नाम दर्ज करें।" : "Please enter your full name first.");
       return;
     }
     if (!phoneNumber || phoneNumber.length < 10) {
-      setErrorMsg("Please enter a valid 10-digit Indian phone number.");
+      setErrorMsg(lang === "mr" ? "कृपया वैध 10-अंकी मोबाईल क्रमांक प्रविष्ट करा." : lang === "hi" ? "कृपया मान्य 10-अंकों का मोबाइल नंबर दर्ज करें।" : "Please enter a valid 10-digit Indian phone number.");
       return;
     }
 
@@ -74,7 +77,7 @@ export default function SignInPage({ lang = "en" }) {
       setOtpSent(true);
       setOtpTimer(30);
       setOtpCode("584920"); // Simulated OTP
-      setSuccessMsg("SMS OTP sent to +91 " + phoneNumber + " (Demo code: 584920)");
+      setSuccessMsg(`SMS OTP sent to +91 ${phoneNumber} (Demo code: 584920)`);
     }, 800);
   };
 
@@ -96,7 +99,7 @@ export default function SignInPage({ lang = "en" }) {
       localStorage.setItem("samarth_user", JSON.stringify(userProfile));
       setCurrentUser(userProfile);
       setLoading(false);
-      setSuccessMsg("Successfully signed in with Google Account!");
+      setSuccessMsg(lang === "mr" ? "Google खात्याद्वारे यशस्वीरित्या साइन इन झाले!" : lang === "hi" ? "Google खाते से सफलतापूर्वक साइन इन हुआ!" : "Successfully signed in with Google Account!");
       setTimeout(() => {
         const redirectPath = location.state?.from || "/find";
         navigate(redirectPath);
@@ -109,13 +112,13 @@ export default function SignInPage({ lang = "en" }) {
     setErrorMsg("");
 
     if (!fullName.trim()) {
-      setErrorMsg("Full Name is required to personalize your scheme dossier.");
+      setErrorMsg(lang === "mr" ? "योजना डॉसियरसाठी पूर्ण नाव आवश्यक आहे." : lang === "hi" ? "योजना डॉसियर के लिए पूरा नाम आवश्यक है।" : "Full Name is required to personalize your scheme dossier.");
       return;
     }
 
     if (authMethod === "email") {
       if (!emailAddress || !emailAddress.includes("@")) {
-        setErrorMsg("Please provide a valid Gmail or Email address.");
+        setErrorMsg(lang === "mr" ? "कृपया वैध ईमेल पत्ता प्रविष्ट करा." : lang === "hi" ? "कृपया मान्य ईमेल पता दर्ज करें।" : "Please provide a valid Gmail or Email address.");
         return;
       }
 
@@ -133,7 +136,7 @@ export default function SignInPage({ lang = "en" }) {
         }
         setCurrentUser(userProfile);
         setLoading(false);
-        setSuccessMsg(`Welcome, ${fullName}! Your Samarth profile is active.`);
+        setSuccessMsg(lang === "mr" ? `स्वागत आहे, ${fullName}! आपले समर्थ प्रोफाइल सक्रिय आहे.` : lang === "hi" ? `नमस्ते, ${fullName}! आपका समर्थ प्रोफाइल सक्रिय है।` : `Welcome, ${fullName}! Your Samarth profile is active.`);
         setTimeout(() => {
           const redirectPath = location.state?.from || "/find";
           navigate(redirectPath);
@@ -146,7 +149,7 @@ export default function SignInPage({ lang = "en" }) {
         return;
       }
       if (!otpCode || otpCode.length < 4) {
-        setErrorMsg("Please enter the 6-digit OTP received on your mobile.");
+        setErrorMsg(lang === "mr" ? "कृपया मोबाईलवर आलेला 6-अंकी OTP प्रविष्ट करा." : lang === "hi" ? "कृपया मोबाइल पर प्राप्त 6-अंकों का OTP दर्ज करें।" : "Please enter the 6-digit OTP received on your mobile.");
         return;
       }
 
@@ -164,7 +167,7 @@ export default function SignInPage({ lang = "en" }) {
         }
         setCurrentUser(userProfile);
         setLoading(false);
-        setSuccessMsg(`Mobile OTP Verified! Welcome, ${fullName}.`);
+        setSuccessMsg(lang === "mr" ? `मोबाईल OTP सत्यापित! स्वागत आहे, ${fullName}.` : lang === "hi" ? `मोबाइल OTP सत्यापित! नमस्ते, ${fullName}।` : `Mobile OTP Verified! Welcome, ${fullName}.`);
         setTimeout(() => {
           const redirectPath = location.state?.from || "/find";
           navigate(redirectPath);
@@ -176,7 +179,7 @@ export default function SignInPage({ lang = "en" }) {
   const handleSignOut = () => {
     localStorage.removeItem("samarth_user");
     setCurrentUser(null);
-    setSuccessMsg("You have been signed out safely.");
+    setSuccessMsg(t.signedOutMsg || "You have been signed out safely.");
     setTimeout(() => setSuccessMsg(""), 3000);
   };
 
@@ -200,10 +203,10 @@ export default function SignInPage({ lang = "en" }) {
             </div>
 
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight leading-snug mb-3">
-              One Secure Account for All Government Grants
+              {t.oneSecureAccount}
             </h2>
             <p className="text-xs text-slate-300 leading-relaxed mb-6">
-              Sign in once to unlock personalized eligibility scoring, auto-fill composite application dossiers, and track your subsidy approvals.
+              {t.oneSecureSub}
             </p>
 
             <div className="space-y-3.5 text-xs text-slate-300">
@@ -242,7 +245,7 @@ export default function SignInPage({ lang = "en" }) {
               </div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-2 border border-emerald-200">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                Active Citizen Profile
+                {t.activeProfile}
               </div>
               <h3 className="text-2xl font-bold text-[#111827] mt-1">
                 {currentUser.name}
@@ -257,7 +260,7 @@ export default function SignInPage({ lang = "en" }) {
                   onClick={() => navigate("/find")}
                   className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#FF6B3D] hover:bg-[#E05326] text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition-all"
                 >
-                  <span>Explore Eligible Schemes</span>
+                  <span>{t.exploreEligible}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
 
@@ -267,7 +270,7 @@ export default function SignInPage({ lang = "en" }) {
                   className="w-full sm:w-auto px-5 py-3 rounded-full bg-[#F4F5F7] hover:bg-slate-200 text-slate-700 text-xs font-bold flex items-center justify-center gap-1.5 transition-colors border border-[#E5E7EB]"
                 >
                   <LogOut className="w-3.5 h-3.5" />
-                  <span>Sign Out</span>
+                  <span>{t.signOut}</span>
                 </button>
               </div>
             </div>
@@ -276,10 +279,10 @@ export default function SignInPage({ lang = "en" }) {
             <div>
               <div className="mb-6">
                 <h3 className="text-2xl font-black text-[#111827] font-['Urbanist',sans-serif]">
-                  Sign In to Samarth
+                  {t.signInTitle}
                 </h3>
                 <p className="text-xs text-slate-500 mt-1">
-                  Enter your details to claim verified financial schemes & subsidies.
+                  {t.signInSub}
                 </p>
               </div>
 
@@ -308,13 +311,13 @@ export default function SignInPage({ lang = "en" }) {
                     d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.36 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"
                   />
                 </svg>
-                <span>Continue with Google / Gmail</span>
+                <span>{t.continueWithGoogle}</span>
               </button>
 
               <div className="relative flex py-2 items-center mb-5">
                 <div className="flex-grow border-t border-[#E5E7EB]"></div>
                 <span className="flex-shrink mx-3 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                  or sign in with
+                  {t.orSignInWith}
                 </span>
                 <div className="flex-grow border-t border-[#E5E7EB]"></div>
               </div>
@@ -335,7 +338,7 @@ export default function SignInPage({ lang = "en" }) {
                   }`}
                 >
                   <Mail className="w-3.5 h-3.5 text-[#FF6B3D]" />
-                  <span>Gmail / Email</span>
+                  <span>{t.gmailTab}</span>
                 </button>
 
                 <button
@@ -352,7 +355,7 @@ export default function SignInPage({ lang = "en" }) {
                   }`}
                 >
                   <Smartphone className="w-3.5 h-3.5 text-[#FF6B3D]" />
-                  <span>Mobile Phone (OTP)</span>
+                  <span>{t.phoneTab}</span>
                 </button>
               </div>
 
@@ -361,7 +364,7 @@ export default function SignInPage({ lang = "en" }) {
                 {/* 1. Full Name Input (Always Asked) */}
                 <div>
                   <label className="block text-xs font-bold text-[#111827] mb-1.5">
-                    Full Name <span className="text-[#FF6B3D]">*</span>
+                    {t.fullNameLabel} <span className="text-[#FF6B3D]">*</span>
                   </label>
                   <div className="relative">
                     <input
@@ -369,7 +372,7 @@ export default function SignInPage({ lang = "en" }) {
                       required
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
-                      placeholder="e.g. Divyani Papalkar"
+                      placeholder={t.fullNamePlaceholder}
                       className="w-full pl-10 pr-4 py-3 rounded-2xl bg-[#F8F9FA] border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#FF6B3D] focus:ring-2 focus:ring-[#FF6B3D]/20 transition-all placeholder:text-slate-400"
                     />
                     <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5 pointer-events-none" />
@@ -380,7 +383,7 @@ export default function SignInPage({ lang = "en" }) {
                 {authMethod === "email" ? (
                   <div>
                     <label className="block text-xs font-bold text-[#111827] mb-1.5">
-                      Gmail / Email Address <span className="text-[#FF6B3D]">*</span>
+                      {t.emailLabel} <span className="text-[#FF6B3D]">*</span>
                     </label>
                     <div className="relative">
                       <input
@@ -388,7 +391,7 @@ export default function SignInPage({ lang = "en" }) {
                         required
                         value={emailAddress}
                         onChange={(e) => setEmailAddress(e.target.value)}
-                        placeholder="e.g. yourname@gmail.com"
+                        placeholder={t.emailPlaceholder}
                         className="w-full pl-10 pr-4 py-3 rounded-2xl bg-[#F8F9FA] border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#FF6B3D] focus:ring-2 focus:ring-[#FF6B3D]/20 transition-all placeholder:text-slate-400"
                       />
                       <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5 pointer-events-none" />
@@ -397,7 +400,7 @@ export default function SignInPage({ lang = "en" }) {
                 ) : (
                   <div>
                     <label className="block text-xs font-bold text-[#111827] mb-1.5">
-                      Indian Mobile Number <span className="text-[#FF6B3D]">*</span>
+                      {t.phoneLabel} <span className="text-[#FF6B3D]">*</span>
                     </label>
                     <div className="relative flex">
                       <span className="inline-flex items-center px-3.5 rounded-l-2xl border border-r-0 border-[#E5E7EB] bg-[#F4F5F7] text-slate-600 text-xs font-bold">
@@ -409,7 +412,7 @@ export default function SignInPage({ lang = "en" }) {
                         maxLength={10}
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ""))}
-                        placeholder="98765 43210"
+                        placeholder={t.phonePlaceholder}
                         className="w-full pl-3.5 pr-4 py-3 rounded-r-2xl bg-[#F8F9FA] border border-[#E5E7EB] text-sm text-[#111827] focus:outline-none focus:border-[#FF6B3D] focus:ring-2 focus:ring-[#FF6B3D]/20 transition-all placeholder:text-slate-400"
                       />
                     </div>
@@ -419,16 +422,16 @@ export default function SignInPage({ lang = "en" }) {
                       <div className="mt-3.5 p-4 rounded-2xl bg-[#F8F9FA] border border-[#E5E7EB] animate-in fade-in slide-in-from-top-2">
                         <div className="flex items-center justify-between mb-1.5">
                           <label className="text-xs font-bold text-[#111827]">
-                            Enter 6-Digit OTP
+                            {t.enterOtp}
                           </label>
                           <span className="text-[11px] text-slate-500 font-mono">
-                            {otpTimer > 0 ? `Resend in ${otpTimer}s` : (
+                            {otpTimer > 0 ? `${t.resendIn} ${otpTimer}s` : (
                               <button
                                 type="button"
                                 onClick={handleSendOtp}
                                 className="text-[#FF6B3D] font-bold hover:underline"
                               >
-                                Resend OTP
+                                {t.resendOtp}
                               </button>
                             )}
                           </span>
@@ -458,7 +461,7 @@ export default function SignInPage({ lang = "en" }) {
                       onChange={(e) => setRememberMe(e.target.checked)}
                       className="w-4 h-4 text-[#FF6B3D] rounded border-[#E5E7EB] focus:ring-[#FF6B3D]"
                     />
-                    <span>Stay signed in on this device</span>
+                    <span>{t.staySignedIn}</span>
                   </label>
                   <span className="text-slate-400 text-[11px]">Instant Verification</span>
                 </div>
@@ -487,14 +490,14 @@ export default function SignInPage({ lang = "en" }) {
                   {loading ? (
                     <>
                       <RefreshCw className="w-4 h-4 animate-spin" />
-                      <span>Verifying Credentials...</span>
+                      <span>{t.verifying}</span>
                     </>
                   ) : (
                     <>
                       <span>
                         {authMethod === "phone" && !otpSent
-                          ? "Send Verification OTP"
-                          : "Sign In & Unlock Benefits"}
+                          ? t.sendOtp
+                          : t.submitButton}
                       </span>
                       <ArrowRight className="w-4 h-4" />
                     </>
@@ -513,3 +516,4 @@ export default function SignInPage({ lang = "en" }) {
     </div>
   );
 }
+

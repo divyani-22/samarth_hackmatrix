@@ -1,28 +1,31 @@
 import React from "react";
 import { UserCheck, Sparkles, FileCheck, ArrowRight } from "lucide-react";
+import { uiTranslations } from "../data/uiTranslations";
 
-export default function HowItWorks({ onGetStarted }) {
+export default function HowItWorks({ onGetStarted, lang = "en" }) {
+  const t = uiTranslations[lang]?.howItWorks || uiTranslations.en.howItWorks;
+
   const steps = [
     {
-      number: "01",
-      title: "Tell us about you",
-      description: "Answer a few simple questions about your age, location, occupation, and financial goals in under 60 seconds.",
+      number: t.step1Number,
+      title: t.step1Title,
+      description: t.step1Desc,
       icon: UserCheck,
-      badge: "Step 1",
+      badge: lang === "hi" ? "चरण 1" : lang === "mr" ? "पायरी 1" : "Step 1",
     },
     {
-      number: "02",
-      title: "See matching schemes",
-      description: "Our deterministic rule engine compares your profile against 500+ verified statutory guidelines to calculate exact eligibility.",
+      number: t.step2Number,
+      title: t.step2Title,
+      description: t.step2Desc,
       icon: Sparkles,
-      badge: "Step 2",
+      badge: lang === "hi" ? "चरण 2" : lang === "mr" ? "पायरी 2" : "Step 2",
     },
     {
-      number: "03",
-      title: "Apply with the right documents",
-      description: "Get a verified document checklist, download an official bank application dossier, and apply directly without middleman friction.",
+      number: t.step3Number,
+      title: t.step3Title,
+      description: t.step3Desc,
       icon: FileCheck,
-      badge: "Step 3",
+      badge: lang === "hi" ? "चरण 3" : lang === "mr" ? "पायरी 3" : "Step 3",
     },
   ];
 
@@ -34,14 +37,11 @@ export default function HowItWorks({ onGetStarted }) {
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#E5E7EB] text-xs font-bold text-neutral-700 shadow-xs">
             <span className="w-2 h-2 rounded-full bg-[#FF6B3D]"></span>
-            <span>Simple 3-Step Process</span>
+            <span>{t.title}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#111827] font-['Urbanist',sans-serif]">
-            How Samarth Works
+            {t.subtitle}
           </h2>
-          <p className="text-sm sm:text-base text-neutral-600 font-normal">
-            From policy discovery to verified bank submission in three easy steps.
-          </p>
         </div>
 
         {/* 3 Step Bento Cards Grid */}

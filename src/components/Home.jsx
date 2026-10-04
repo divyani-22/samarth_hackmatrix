@@ -21,6 +21,7 @@ export default function Home({ onFilterSubmit, onSelectScheme, filterState, lang
       <HeroSection
         onFilterSubmit={onFilterSubmit}
         onExploreClick={scrollToExplore}
+        lang={lang}
       />
 
       {/* AI Innovation Suite (Stacking Optimizer, Eligibility Simulator, Business AI, Certificate OCR) */}
@@ -30,19 +31,20 @@ export default function Home({ onFilterSubmit, onSelectScheme, filterState, lang
       <ExploreSchemes
         onSelectScheme={onSelectScheme}
         filterState={filterState}
+        lang={lang}
       />
 
       {/* Why Samarth Bento Stats (90%, 55%, 30%, 100%) */}
-      <WhySamarthBento />
+      <WhySamarthBento lang={lang} />
 
       {/* How It Works (3 Steps) */}
-      <HowItWorks onGetStarted={scrollToExplore} />
+      <HowItWorks onGetStarted={scrollToExplore} lang={lang} />
 
       {/* App Preview / Dashboard Mockup with Charts */}
-      <AppPreviewMockup />
+      <AppPreviewMockup lang={lang} />
 
       {/* FAQ Accordion */}
-      <FaqAccordion />
+      <FaqAccordion lang={lang} />
     </div>
   );
 }

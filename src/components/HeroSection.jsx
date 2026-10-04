@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { ArrowRight, Search, ShieldCheck, Sparkles, Filter, CheckCircle2 } from "lucide-react";
+import { uiTranslations } from "../data/uiTranslations";
 
-export default function HeroSection({ onFilterSubmit, onExploreClick }) {
+export default function HeroSection({ onFilterSubmit, onExploreClick, lang = "en" }) {
+  const t = uiTranslations[lang]?.hero || uiTranslations.en.hero;
+
   const [formData, setFormData] = useState({
     state: "Maharashtra",
     age: "26-35",
@@ -59,20 +62,17 @@ export default function HeroSection({ onFilterSubmit, onExploreClick }) {
             {/* Pill Tag */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#E5E7EB] text-xs font-bold text-neutral-700 w-fit shadow-xs">
               <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse"></span>
-              <span>National Welfare & Policy Engine @2026</span>
+              <span>{t.badge}</span>
             </div>
 
             {/* Main Headline (48-64px bold, tight tracking) */}
             <h1 className="text-4xl sm:text-5xl lg:text-[60px] font-black leading-[1.08] tracking-tight text-[#111827] font-['Urbanist',sans-serif]">
-              Know Your Schemes. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B3D] via-[#FF5722] to-[#E64A19]">
-                Claim Your Rights.
-              </span>
+              {t.headline}
             </h1>
 
             {/* One short line of subtext */}
             <p className="text-base sm:text-lg text-neutral-600 max-w-xl font-normal leading-relaxed">
-              Discover verified central and state subsidies, check exact statutory eligibility rules, and download bank-ready application dossiers in minutes.
+              {t.subtext}
             </p>
 
             {/* CTAs & Action Buttons */}
@@ -81,7 +81,7 @@ export default function HeroSection({ onFilterSubmit, onExploreClick }) {
                 onClick={onExploreClick}
                 className="flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#FF6B3D] hover:bg-[#ff5722] text-white text-base font-bold shadow-orange-glow transition-all duration-300 hover:scale-[1.02] cursor-pointer"
               >
-                <span>Find my schemes</span>
+                <span>{t.findMySchemes}</span>
                 <ArrowRight size={18} />
               </button>
 
@@ -89,7 +89,7 @@ export default function HeroSection({ onFilterSubmit, onExploreClick }) {
                 href="#how-it-works"
                 className="flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white hover:bg-neutral-100 text-neutral-800 text-base font-semibold border border-neutral-300 shadow-xs transition-colors"
               >
-                <span>How it works</span>
+                <span>{t.howItWorksCta}</span>
               </a>
             </div>
 
@@ -118,10 +118,10 @@ export default function HeroSection({ onFilterSubmit, onExploreClick }) {
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-neutral-100">
                 <div>
                   <h3 className="text-xl font-bold text-[#111827] font-['Urbanist',sans-serif]">
-                    Quick Eligibility Checker
+                    {t.quickCheckTitle}
                   </h3>
                   <p className="text-xs text-neutral-500 mt-0.5">
-                    Match with government benefits in 30 seconds
+                    {t.quickCheckSub}
                   </p>
                 </div>
                 <div className="w-9 h-9 rounded-xl bg-orange-50 flex items-center justify-center text-[#FF6B3D]">
@@ -135,7 +135,7 @@ export default function HeroSection({ onFilterSubmit, onExploreClick }) {
                 {/* State Dropdown */}
                 <div>
                   <label className="block text-xs font-bold text-neutral-600 uppercase tracking-wider mb-1.5">
-                    State / Union Territory
+                    {t.stateLabel}
                   </label>
                   <select
                     value={formData.state}
@@ -154,7 +154,7 @@ export default function HeroSection({ onFilterSubmit, onExploreClick }) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-xs font-bold text-neutral-600 uppercase tracking-wider mb-1.5">
-                      Age Range
+                      {t.ageLabel}
                     </label>
                     <select
                       value={formData.age}
@@ -171,7 +171,7 @@ export default function HeroSection({ onFilterSubmit, onExploreClick }) {
 
                   <div>
                     <label className="block text-xs font-bold text-neutral-600 uppercase tracking-wider mb-1.5">
-                      Social Category
+                      {t.categoryLabel}
                     </label>
                     <select
                       value={formData.category}
@@ -190,7 +190,7 @@ export default function HeroSection({ onFilterSubmit, onExploreClick }) {
                 {/* Occupation Dropdown */}
                 <div>
                   <label className="block text-xs font-bold text-neutral-600 uppercase tracking-wider mb-1.5">
-                    Primary Occupation / Activity
+                    {t.occupationLabel}
                   </label>
                   <select
                     value={formData.occupation}
@@ -212,7 +212,7 @@ export default function HeroSection({ onFilterSubmit, onExploreClick }) {
                     className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-[#FF6B3D] hover:bg-[#ff5722] text-white text-sm font-bold shadow-orange-glow transition-all duration-300 cursor-pointer"
                   >
                     <Search size={16} />
-                    <span>Show schemes</span>
+                    <span>{t.showSchemes}</span>
                   </button>
                 </div>
 

@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Sparkles, Globe, ChevronDown, Check, Menu, X, ArrowRight, Layers, Compass, BrainCircuit, Calculator, MapPin, Scale } from "lucide-react";
 import FinanceLogo from "./FinanceLogo";
+import { uiTranslations } from "../data/uiTranslations";
 
 export default function Navbar({ lang, setLang, onOpenEligibility }) {
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+
+  const t = uiTranslations[lang]?.nav || uiTranslations.en.nav;
 
   const languages = [
     { code: "en", label: "English", native: "English" },
@@ -18,12 +21,12 @@ export default function Navbar({ lang, setLang, onOpenEligibility }) {
   const currentLangObj = languages.find((l) => l.code === lang) || languages[0];
 
   const innovationTools = [
-    { label: "Policy Stacker & Optimizer", path: "/optimizer", icon: Layers, desc: "Combine multiple grants" },
-    { label: "Path to Eligibility Simulator", path: "/simulator", icon: Compass, desc: "What-If approval roadmap" },
-    { label: "Business Idea AI Analyzer", path: "/analyze", icon: BrainCircuit, desc: "Instant CAPEX & grants" },
-    { label: "Loan & Subsidy Calculator", path: "/calculator", icon: Calculator, desc: "Moratorium & EMI math" },
-    { label: "Channel Partner Locator", path: "/partners", icon: MapPin, desc: "Find nearest SCAs & Banks" },
-    { label: "3-State Evaluation Test Bench", path: "/testbench", icon: Scale, desc: "Deterministic benchmark" },
+    { label: t.policyStacker, path: "/optimizer", icon: Layers, desc: t.policyStackerDesc },
+    { label: t.eligibilitySim, path: "/simulator", icon: Compass, desc: t.eligibilitySimDesc },
+    { label: t.businessAi, path: "/analyze", icon: BrainCircuit, desc: t.businessAiDesc },
+    { label: t.loanCalc, path: "/calculator", icon: Calculator, desc: t.loanCalcDesc },
+    { label: t.partnerLocator, path: "/partners", icon: MapPin, desc: t.partnerLocatorDesc },
+    { label: t.testBench, path: "/testbench", icon: Scale, desc: t.testBenchDesc },
   ];
 
   return (
@@ -51,7 +54,7 @@ export default function Navbar({ lang, setLang, onOpenEligibility }) {
               `text-sm font-semibold transition-colors ${isActive ? "text-[#FF6B3D]" : "text-neutral-600 hover:text-[#111827]"}`
             }
           >
-            Home
+            {t.home}
           </NavLink>
 
           <NavLink
@@ -60,7 +63,7 @@ export default function Navbar({ lang, setLang, onOpenEligibility }) {
               `text-sm font-semibold transition-colors ${isActive ? "text-[#FF6B3D]" : "text-neutral-600 hover:text-[#111827]"}`
             }
           >
-            Find Schemes
+            {t.findSchemes}
           </NavLink>
 
           <NavLink
@@ -69,7 +72,7 @@ export default function Navbar({ lang, setLang, onOpenEligibility }) {
               `text-sm font-semibold transition-colors ${isActive ? "text-[#FF6B3D]" : "text-neutral-600 hover:text-[#111827]"}`
             }
           >
-            Explore
+            {t.explore}
           </NavLink>
 
           {/* AI Tools Dropdown Menu */}
@@ -78,7 +81,7 @@ export default function Navbar({ lang, setLang, onOpenEligibility }) {
               onClick={() => setToolsDropdownOpen(!toolsDropdownOpen)}
               className="flex items-center gap-1.5 text-sm font-semibold text-neutral-600 hover:text-[#111827] transition-colors cursor-pointer"
             >
-              <span>AI Innovation Suite</span>
+              <span>{t.aiSuite}</span>
               <ChevronDown size={14} className={`transition-transform duration-200 ${toolsDropdownOpen ? "rotate-180" : ""}`} />
             </button>
 
@@ -88,7 +91,7 @@ export default function Navbar({ lang, setLang, onOpenEligibility }) {
                 onMouseLeave={() => setToolsDropdownOpen(false)}
               >
                 <div className="text-[10px] uppercase font-bold text-neutral-400 px-3 py-1.5 border-b border-neutral-100">
-                  Intelligence Tools
+                  {t.aiSuite}
                 </div>
                 {innovationTools.map((tool) => {
                   const Icon = tool.icon;
@@ -121,7 +124,7 @@ export default function Navbar({ lang, setLang, onOpenEligibility }) {
               `text-sm font-semibold transition-colors ${isActive ? "text-[#FF6B3D]" : "text-neutral-600 hover:text-[#111827]"}`
             }
           >
-            Calculator
+            {t.calculator}
           </NavLink>
 
           <NavLink
@@ -130,7 +133,7 @@ export default function Navbar({ lang, setLang, onOpenEligibility }) {
               `text-sm font-semibold transition-colors ${isActive ? "text-[#FF6B3D]" : "text-neutral-600 hover:text-[#111827]"}`
             }
           >
-            Locator
+            {t.locator}
           </NavLink>
         </nav>
 
@@ -164,7 +167,7 @@ export default function Navbar({ lang, setLang, onOpenEligibility }) {
                 to="/signin"
                 className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-[#111827] text-xs font-bold border border-[#E5E7EB] hover:border-[#FF6B3D] hover:text-[#FF6B3D] transition-colors"
               >
-                <span>Sign In</span>
+                <span>{t.signIn}</span>
               </Link>
             );
           })()}
@@ -210,7 +213,7 @@ export default function Navbar({ lang, setLang, onOpenEligibility }) {
             }}
             className="flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#FF6B3D] hover:bg-[#ff5722] text-white text-xs font-bold shadow-orange-glow transition-all duration-300 hover:scale-[1.02] cursor-pointer"
           >
-            <span>Check eligibility</span>
+            <span>{t.checkEligibility}</span>
             <ArrowRight size={13} />
           </button>
         </div>

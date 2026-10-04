@@ -86,6 +86,7 @@ export default function App() {
             element={
               <ExploreSchemes
                 filterState={eligibilityCriteria?.state}
+                lang={lang}
               />
             }
           />
@@ -209,7 +210,7 @@ export default function App() {
       </main>
 
       {/* 3. Global Bento Footer */}
-      <FooterBento onGetStarted={handleOpenEligibility} />
+      <FooterBento onGetStarted={handleOpenEligibility} lang={lang} />
 
       {/* 4. Global Floating AI Chatbot */}
       <AIChatbot lang={lang} />

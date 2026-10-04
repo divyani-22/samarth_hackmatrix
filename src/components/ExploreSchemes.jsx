@@ -2,22 +2,25 @@ import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Search, ArrowRight, Sparkles, Building2, CheckCircle2, ChevronRight, SlidersHorizontal, Eye } from "lucide-react";
 import schemesData from "../data/schemesData.json";
+import { uiTranslations } from "../data/uiTranslations";
 
-export default function ExploreSchemes({ onSelectScheme, filterState }) {
+export default function ExploreSchemes({ onSelectScheme, filterState, lang = "en" }) {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedState, setSelectedState] = useState(filterState || "All");
   const [visibleCount, setVisibleCount] = useState(6);
 
+  const t = uiTranslations[lang]?.explore || uiTranslations.en.explore;
+
   const categories = [
-    { key: "all", label: "All Schemes" },
-    { key: "education", label: "Education" },
-    { key: "health", label: "Health" },
-    { key: "agriculture", label: "Agriculture" },
-    { key: "women-child", label: "Women & Child" },
-    { key: "employment", label: "Employment" },
-    { key: "housing", label: "Housing" },
-    { key: "senior-citizens", label: "Senior Citizens" },
+    { key: "all", label: t.allCategories || "All Schemes" },
+    { key: "education", label: t.education || "Education" },
+    { key: "health", label: t.health || "Health" },
+    { key: "agriculture", label: t.agriculture || "Agriculture" },
+    { key: "women-child", label: t.womenChild || "Women & Child" },
+    { key: "employment", label: t.employment || "Employment" },
+    { key: "housing", label: t.housing || "Housing" },
+    { key: "senior-citizens", label: t.seniorCitizens || "Senior Citizens" },
   ];
 
   // Category Tag Colors mapping
@@ -66,10 +69,10 @@ export default function ExploreSchemes({ onSelectScheme, filterState }) {
               <span>Verified Statutory Directory</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#111111] font-['Urbanist',sans-serif]">
-              Explore Government Schemes
+              {t.title}
             </h2>
             <p className="text-sm sm:text-base text-neutral-500 mt-2 max-w-xl">
-              Browse official central & state welfare programs categorized by sector and target beneficiary group.
+              {t.subtitle}
             </p>
           </div>
 
@@ -78,7 +81,7 @@ export default function ExploreSchemes({ onSelectScheme, filterState }) {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400" size={17} />
             <input
               type="text"
-              placeholder="Search by scheme name or keyword..."
+              placeholder={t.searchPlaceholder}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-11 pr-4 py-3 rounded-full bg-white border border-[#E5E5E5] text-sm text-[#111111] placeholder:text-neutral-400 focus:outline-none focus:border-[#FF6B3D] shadow-xs transition-all"
@@ -148,7 +151,7 @@ export default function ExploreSchemes({ onSelectScheme, filterState }) {
                 <div className="pt-4 border-t border-neutral-100 flex items-center justify-between gap-3">
                   <div>
                     <div className="text-[10px] uppercase tracking-wider font-semibold text-neutral-400">
-                      Primary Benefit
+                      {t.maxBenefit || "Primary Benefit"}
                     </div>
                     <div className="text-sm font-bold text-[#111111]">
                       {scheme.benefitHighlight}
@@ -165,7 +168,7 @@ export default function ExploreSchemes({ onSelectScheme, filterState }) {
                     }}
                     className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#111111] hover:bg-[#FF6B3D] text-white text-xs font-bold transition-all duration-200 cursor-pointer shadow-xs"
                   >
-                    <span>View details</span>
+                    <span>{t.viewDetails}</span>
                     <ChevronRight size={14} />
                   </Link>
                 </div>
@@ -174,8 +177,8 @@ export default function ExploreSchemes({ onSelectScheme, filterState }) {
           </div>
         ) : (
           <div className="p-12 text-center bg-white rounded-[28px] border border-[#E5E5E5] space-y-3">
-            <p className="text-base font-bold text-[#111111]">No schemes match your filter criteria.</p>
-            <p className="text-xs text-neutral-500">Try clearing the search query or selecting "All Schemes".</p>
+            <p className="text-base font-bold text-[#111111]">{t.noSchemesFound}</p>
+            <p className="text-xs text-neutral-500">Try clearing the search query or selecting "All Categories".</p>
             <button
               onClick={() => {
                 setSelectedCategory("all");
@@ -195,7 +198,7 @@ export default function ExploreSchemes({ onSelectScheme, filterState }) {
               onClick={() => setVisibleCount((prev) => prev + 6)}
               className="px-8 py-3.5 rounded-full bg-white hover:bg-neutral-100 text-[#111111] text-sm font-bold border border-[#E5E5E5] shadow-xs hover:border-neutral-300 transition-all cursor-pointer"
             >
-              Load more schemes ({filteredSchemes.length - displayedSchemes.length} remaining)
+              {t.loadMore} ({filteredSchemes.length - displayedSchemes.length} remaining)
             </button>
           </div>
         )}
@@ -204,3 +207,4 @@ export default function ExploreSchemes({ onSelectScheme, filterState }) {
     </section>
   );
 }
+

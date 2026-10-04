@@ -4,6 +4,7 @@ import { partners } from "../data/partners";
 import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import { uiTranslations } from "../data/uiTranslations";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -16,6 +17,8 @@ export default function PartnersPage({ lang = "en" }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [partnerType, setPartnerType] = useState("");
   const [selectedPartner, setSelectedPartner] = useState(null);
+
+  const t = uiTranslations[lang]?.partners || uiTranslations.en.partners;
 
   const filteredPartners = partners.filter((p) => {
     const matchSearch =
@@ -40,10 +43,10 @@ export default function PartnersPage({ lang = "en" }) {
               <span>Geo-Spatial Nodal Routing</span>
             </div>
             <h1 className="text-3xl sm:text-4xl font-black text-[#111111] font-['Urbanist',sans-serif]">
-              Locate Channel Partners & SCAs
+              {t.title}
             </h1>
             <p className="text-xs sm:text-sm text-neutral-500">
-              Find verified State Channelizing Agencies, Public Banks, and CSC centers near you.
+              {t.subtitle}
             </p>
           </div>
 
@@ -53,7 +56,7 @@ export default function PartnersPage({ lang = "en" }) {
               <Search size={15} className="text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Search city, district, branch..."
+                placeholder={t.searchPlaceholder}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-9 pr-4 py-2.5 rounded-full bg-white border border-neutral-300 text-xs font-semibold focus:outline-none focus:border-[#FF6B3D]"
@@ -65,10 +68,10 @@ export default function PartnersPage({ lang = "en" }) {
               onChange={(e) => setPartnerType(e.target.value)}
               className="px-4 py-2.5 rounded-full bg-white border border-neutral-300 text-xs font-bold text-neutral-700 cursor-pointer focus:outline-none"
             >
-              <option value="">All Institutions</option>
-              <option value="Public Sector Bank">Public Sector Bank</option>
-              <option value="Private Sector Bank">Private Sector Bank</option>
-              <option value="Regional Rural Bank">Regional Rural Bank</option>
+              <option value="">{t.filterAll || "All Institutions"}</option>
+              <option value="Public Sector Bank">{t.filterBank || "Public Sector Bank"}</option>
+              <option value="Private Sector Bank">{lang === "mr" ? "खाजगी बँका" : lang === "hi" ? "निजी बैंक" : "Private Sector Bank"}</option>
+              <option value="Regional Rural Bank">{lang === "mr" ? "ग्रामीण प्रादेशिक बँक" : lang === "hi" ? "क्षेत्रीय ग्रामीण बैंक" : "Regional Rural Bank"}</option>
             </select>
           </div>
         </div>
@@ -79,7 +82,7 @@ export default function PartnersPage({ lang = "en" }) {
           {/* Partners Scrollable List (Left, span 5) */}
           <div className="lg:col-span-5 bg-white p-4 rounded-[28px] border border-[#E5E5E5] shadow-bento-soft flex flex-col overflow-hidden">
             <div className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-3 px-2">
-              Verified Centers ({filteredPartners.length})
+              {lang === "mr" ? `सत्यापित केंद्रे (${filteredPartners.length})` : lang === "hi" ? `सत्यापित केंद्र (${filteredPartners.length})` : `Verified Centers (${filteredPartners.length})`}
             </div>
 
             <div className="flex-1 overflow-y-auto space-y-2.5 pr-1">
@@ -105,7 +108,7 @@ export default function PartnersPage({ lang = "en" }) {
                   <div className={`text-[11px] mt-1.5 flex items-center justify-between ${
                     selectedPartner?.id === p.id ? "text-neutral-300" : "text-neutral-500"
                   }`}>
-                    <span>{p.dist} away</span>
+                    <span>{p.dist} {lang === "mr" ? "अंतरावर" : lang === "hi" ? "दूरी पर" : "away"}</span>
                     <a
                       href={`https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}`}
                       target="_blank"
@@ -113,7 +116,7 @@ export default function PartnersPage({ lang = "en" }) {
                       className="text-[#FF6B3D] font-bold hover:underline flex items-center gap-1"
                     >
                       <Navigation size={11} />
-                      <span>Directions</span>
+                      <span>{t.getDirections || "Directions"}</span>
                     </a>
                   </div>
                 </div>
@@ -144,7 +147,7 @@ export default function PartnersPage({ lang = "en" }) {
                         rel="noopener noreferrer"
                         className="mt-2 inline-block bg-[#FF6B3D] text-white px-3 py-1 rounded-full text-[10px] font-bold"
                       >
-                        Get Directions
+                        {t.getDirections || "Get Directions"}
                       </a>
                     </div>
                   </Popup>
@@ -159,3 +162,4 @@ export default function PartnersPage({ lang = "en" }) {
     </div>
   );
 }
+
