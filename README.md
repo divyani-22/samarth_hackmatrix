@@ -129,8 +129,8 @@ Samarth offers universal, end-to-end trilingual localization. When toggling the 
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/divyani-22/samarth_hackmatrix.git
-   cd samarth_hackmatrix/SchemeSetu
+   git clone https://github.com/divyani-22/samarth_welfare.git
+   cd samarth_welfare/SchemeSetu
    ```
 
 2. **Install dependencies:**
@@ -187,7 +187,7 @@ To enable client-side single-page routing without 404 errors on subroutes:
 ## 👥 Authors & Acknowledgments
 
 - **Lead Developer:** [Divyani Papalkar](https://github.com/divyani-22) (`divyanipapalkar22@gmail.com`)
-- **Repository:** [https://github.com/divyani-22/samarth_hackmatrix](https://github.com/divyani-22/samarth_hackmatrix)
+- **Repository:** [https://github.com/divyani-22/samarth_welfare](https://github.com/divyani-22/samarth_welfare)
 - **Official Open Data Sources:** [myScheme.gov.in](https://www.myscheme.gov.in/), Ministry of MSME, NSFDC, NBCFDC, NSKFDC, and Stand-Up India.
 
 ---
